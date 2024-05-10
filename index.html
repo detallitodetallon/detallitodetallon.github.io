@@ -10,6 +10,10 @@
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v19.0&appId=669920930876269"
+        nonce="mnYxyhRN"></script>
     <nav id="navegador">
         <img src="./images/logo.png" alt="" id="logo">
     </nav>
@@ -238,29 +242,42 @@
                 </div>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="imagenModal" tabindex="-1" aria-labelledby="imagenModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"><span>x</span></button>
-                        <div class="modal-body">
-                            <img src="" class="img-fluid" id="imagenModalImg" alt="Imagen en tamaño completo">
-                        </div>
-                        <!-- Flechas para navegar entre imágenes -->
-                        <button class="btn btn-primary" id="anterior">&larr; Anterior</button>
-                        <button class="btn btn-primary" id="siguiente">Siguiente &rarr;</button>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 
     <section class="container pt-5">
-        <h1 class="text-center">Video</h1>
+        <h1 class="text-center">VideoS</h1>
+        <div class="row">
+            <!-- Videos -->
+            <div class="col">
+                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@detallitodetallon"
+                    data-unique-id="detallitodetallon" data-embed-type="creator" style="margin-top: 0;">
+                    <section> <a target="_blank"
+                            href="https://www.tiktok.com/@detallitodetallon?refer=creator_embed">@detallitodetallon</a>
+                    </section>
+                </blockquote>
+            </div>
+        </div>
     </section>
 
+    <!-- Modal -->
+    <div class="modal fade" id="imagenModal" tabindex="-1" aria-labelledby="imagenModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"><span>x</span></button>
+                <div class="modal-body">
+                    <img src="" class="img-fluid" id="imagenModalImg" alt="Imagen en tamaño completo">
+                </div>
+                <!-- Flechas para navegar entre imágenes -->
+                <button class="btn btn-primary" id="anterior">&larr; Anterior</button>
+                <button class="btn btn-primary" id="siguiente">Siguiente &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <script async src="https://www.tiktok.com/embed.js"></script>
     <script src="./libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -299,6 +316,7 @@
             imagenModal.src = imagenes[index];
         }
     </script>
+
 </body>
 
 </html>
