@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             products.forEach((product, index) => {
                 // Crear tarjeta de producto
                 const productCard = document.createElement('div');
-                productCard.classList.add('col-3', 'producto');
+                productCard.classList.add('col-xxl-3', 'col-xl-4', 'col-lg-4', 'col-md-6', 'col-12', 'producto');
                 productCard.setAttribute('data-bs-toggle', 'modal');
                 productCard.setAttribute('data-bs-target', '#productModal'+index);
                 productCard.innerHTML = `
@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="modal-body">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-lg-5 col-12 col-img">
                                         <img src="${product.imagen}" class="img-fluid mb-3" alt="${product.nombre}">
                                     </div>
-                                    <div class="col-6 offset-md-1">
+                                    <div class="col-lg-6 col-12 offset-lg-1 col-txt">
                                         <h5 class="modal-title" id="productModalLabel${index}">${product.nombre}</h5>
                                         <p><b>Descripción:</b></p>
                                         <p>${product.descripcion}</p>

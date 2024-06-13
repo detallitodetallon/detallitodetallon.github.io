@@ -14,14 +14,26 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 10px 50px 10px 0px;
+  @media (max-width: 990px) {
+    height: 100px;
+    padding: 10px 10px 10px 0px;
+  }
   #logo {
     width: variables.$tamanio-logo;
     background-color: variables.$color-blanco;
     padding-left: 30px;
     border-bottom-right-radius: 30px;
     box-shadow: 2px 15px 24px -21px rgba(104, 104, 104, 0.75);
+    @media (max-width: 990px) {
+      box-shadow: none;
+      padding-left: 10px;
+    }
     img#logo-img {
       width: 100%;
+      @media (max-width: 990px) {
+        width: auto;
+        height: 85px;
+      }
     }
   }
   #menu {
@@ -38,6 +50,10 @@
       li {
         list-style: none;
         position: relative;
+        margin-right: 10px;
+        &:last-child {
+          margin-right: 0;
+        }
         a {
           color: variables.$color-texto;
           font-weight: 500;
@@ -48,7 +64,9 @@
       width: 60rem;
       margin-left: 40px;
       padding-right: 50px;
-
+      @media (max-width: 990px) {
+        display: none;
+      }
       li {
         .active {
           color: variables.$color-rosa;
