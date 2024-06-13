@@ -1,0 +1,65 @@
+[
+  {
+    "nombre": "Arreglo Pequeño Feliz Día Papá",
+    "imagen": "./images/papa/papa3.jpg",
+    "precio": "30.00",
+    "descripcion": "Arreglo pequeño para el día del padre, caja y decoracion en colores dorado y negro. <br><br><b>Contiene:</b> <br><ul><li>2 snacks naturales</li><li>2 cervezas corona</li></ul>",
+    "video": "https://www.tiktok.com/@detallitodetallon/video/7374647865538350341?is_from_webapp=1&sender_device=pc&web_id=7370915670487434757"
+  },
+  {
+    "nombre": "Arreglo el Mejor Papá",
+    "imagen": "./images/papa/papa4.jpg",
+    "precio": "50.00",
+    "descripcion": "Arreglo para el día del padre en caja temática y decorado en colores azules, rosas eternas escarchadas azules y un globo decorado con frase en vinil 'El mejor papito del mundo'. <br><br><b>Contiene:</b> <br><ul><li>3 cervezas corona</li></ul>",
+    "video": "https://www.tiktok.com/@detallitodetallon/video/7374649052161494277?is_from_webapp=1&sender_device=pc&web_id=7370915670487434757"
+  },
+  {
+    "nombre": "Arreglo Feliz Día Papito",
+    "imagen": "./images/papa/papa6.jpg",
+    "precio": "55.00",
+    "descripcion": "Arreglo para el día del padre en caja y decoración en dorado y negro, con globo temático. <br><br><b>Contiene:</b> <br><ul><li>1 tomatodo de vidrio Feliz día papá</li><li>2 cervezas corona extra en lata</li><li>4 chocolates monfer</li></ul>",
+    "video": ""
+  },
+  {
+    "nombre": "Arreglo Feliz Día Papá",
+    "imagen": "./images/papa/papa8.jpg",
+    "precio": "60.00",
+    "descripcion": "Arreglo para el día del padre, en caja de trupan y decoración en tonos azules, y globo estrella azul con mensaje en vinil Feliz día papá'. <br><br><b>Contiene:</b> <br><ul><li>1 termo Feliz día papá</li><li>1 cerveza Corona Extra en lata</li><li>1 snack natural</li><li>2 chocolates bonobones</li></ul>",
+    "video": ""
+  },
+  {
+    "nombre": "Arreglo Super Papá",
+    "imagen": "./images/papa/papa7.jpg",
+    "precio": "65.00",
+    "descripcion": "Arreglo para el día del padre, en caja trupan y globo temático 'Super Papá' decorado en tonos azules y rosas eternas brillosas. <br><br><b>Contiene:</b> <br><ul><li>2 cervezas Corona Extra en lata</li><li>1 chop temático grande día del padre</li><li>4 snacks salados naturales</li></ul>",
+    "video": ""
+  },
+  {
+    "nombre": "Arreglo te Quiero Papito",
+    "imagen": "./images/papa/papa1.jpg",
+    "precio": "70.00",
+    "descripcion": "Arreglo para el día del padre decorado en colores verdes, en caja de trupán, y globo decorado con letras en vinil. <br><br><b>Contiene:</b> <br><ul><li>3 cervezas pilsen grande en lata</li><li>1 caja de chocolates Vizzio</li><li>1 chop cervezero de vidrio día del padre </li></ul>",
+    "video": "https://www.tiktok.com/@detallitodetallon/video/7374648557678316805?is_from_webapp=1&sender_device=pc&web_id=7370915670487434757"
+  },
+  {
+    "nombre": "Arreglo Gran FBC Melgar",
+    "imagen": "./images/papa/papa2.jpg",
+    "precio": "90.00",
+    "descripcion": "Arreglo en caja temática de FBC Melgar para día del padre, decorada con los colores del equipo y con un globo personalizado con el escudo dorado del equipo. <br><br><b>Contiene:</b> <br><ul><li>Chop cervezero temático Melgar</li><li>3 cervezas corona<li><li>2 snacks Inka Chips</li></ul>",
+    "video": "https://www.tiktok.com/@detallitodetallon/video/7374557834018688262?is_from_webapp=1&sender_device=pc&web_id=7370915670487434757"
+  },
+  {
+    "nombre": "Arreglo el Mejor Papito del Mundo",
+    "imagen": "./images/papa/papa5.jpg",
+    "precio": "100.00",
+    "descripcion": "Arreglo para el día del padre grande, decorado en tonos azules, con globo decorado y pintado azul con letras en vinil y rosas eternas brillosas. <br><br><b>Contiene:</b> <br><ul><li>1 chocolate vizzio</li><li>5 chocolates monfer</li><li>1 reloj para muñeca en caja</li><li>1 tomatodo de vidrio temático día del padre</li><li>1 perfume Indian Collection para varón</li><li>1 caja de billetera, bolígrafo y llavero</li></ul>",
+    "video": ""
+  },
+  {
+    "nombre": "Arreglo el Mejor Papito del Mundo",
+    "imagen": "./images/papa/papa9.jpg",
+    "precio": "110.00",
+    "descripcion": "Arreglo para el día del padre grande, decorado en tonos dorado y negro con un globo estrella con letras en vinil. <br><br><b>Contiene:</b> <br><ul><li>1 ron Cartavio Black de 1 litro</li><li>1 gaseosa Coca-Cola</li><li>2 snacks Inka Chips</li><li>1 tomatodo de vidrio día del padre</li></ul>",
+    "video": ""
+  }
+]

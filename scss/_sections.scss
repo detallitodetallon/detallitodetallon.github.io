@@ -1,0 +1,175 @@
+@use "variables";
+
+section {
+  margin-top: 100px;
+}
+
+#quienes-somos {
+  display: flex;
+  align-items: center;
+  h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  #globos {
+    width: 100%;
+  }
+}
+
+#mision-vision {
+  background-color: variables.$color-rosa-50;
+  .container {
+    padding-top: 100px;
+    padding-bottom: 90px;
+  }
+  .contenido {
+    border-radius: 20px;
+    background-color: variables.$color-rosa;
+    min-height: 410px;
+    padding: 50px 30px 40px 30px;
+    text-align: center;
+    color: variables.$color-blanco;
+    h3 {
+      color: variables.$color-blanco;
+      margin-bottom: 20px;
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
+      }
+    }
+    .icon {
+      background-color: variables.$color-blanco;
+      color: variables.$color-rosa;
+      width: 80px;
+      height: 80px;
+      font-size: 40px;
+      line-height: 80px;
+      border-radius: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+#construccion {
+  height: 24rem;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  h1,
+  a {
+    display: block;
+    width: 100%;
+  }
+  a {
+    color: variables.$color-rosa;
+    font-weight: 700;
+    font-size: 20px;
+    border: 2px solid variables.$color-rosa;
+    width: 200px;
+    padding: 10px 0;
+    border-radius: 50px;
+    margin-top: 10px;
+    background-color: variables.$color-blanco;
+    transition: 0.5s all;
+    &:hover {
+      background-color: variables.$color-rosa;
+      color: variables.$color-blanco;
+    }
+  }
+}
+
+#catalogo {
+  .productos {
+    .producto {
+      margin-bottom: 60px;
+      .imagen {
+        text-align: center;
+        img {
+          width: auto;
+          height: 400px;
+          border-radius: 10px;
+        }
+      }
+      .descripcion {
+        margin-top: 20px;
+        text-align: center;
+        .titulo {
+          font-weight: 600;
+          font-size: 16px;
+          margin-bottom: 5px;
+          //height: 60px;
+        }
+        .precio {
+          font-size: 18px;
+          margin-bottom: 20px;
+        }
+      }
+      .detalles {
+        text-align: center;
+        button {
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          border: 2px solid variables.$color-rosa;
+          color: variables.$color-rosa;
+          padding: 8px 10px;
+          border-radius: 20px;
+          background-color: variables.$color-blanco;
+          font-weight: 500;
+          transition: 0.5s all;
+          &:hover {
+            background-color: variables.$color-rosa;
+            color: variables.$color-blanco;
+          }
+        }
+      }
+    }
+  }
+}
+
+.producto-modal {
+  .modal-dialog {
+    max-width: 70vw;
+    min-height: 0;
+    max-height: 70vh;
+    margin-top: 20vh;
+    margin-bottom: 10vh;
+    .modal-header{
+      border-color: transparent;
+    }
+
+    .modal-title{
+      border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .wsp-pedido {
+      display: block;
+      text-align: center;
+      padding: 10px 20px;
+      width: 100%;
+      margin-top: 20px;
+      background-color: variables.$color-rosa;
+      color: variables.$color-blanco;
+      font-weight: 500;
+      border: 2px solid variables.$color-rosa;
+      border-radius: 20px;
+      transition: 0.5s all;
+      &:hover {
+        background-color: variables.$color-blanco;
+        color: variables.$color-rosa;
+      }
+    }
+  }
+}

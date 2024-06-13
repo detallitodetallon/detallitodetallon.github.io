@@ -1,0 +1,65 @@
+$color-rosa: #f87f8c;
+$color-rosa-50: rgba(248, 127, 139, 0.25);
+$color-blanco: #fff;
+$color-transparente: rgba(255, 255, 255, 0);
+$color-texto: #262626;
+
+$tamanio-logo: 180px;
+$altura-nav: 100px;
+
+$font-titulo: "Fredoka", sans-serif;
+$font-w-titulo: 600;
+$font-subtitulo: "Fredoka", sans-serif;
+$font-w-subtitulo: 600;
+
+@mixin center-absolute(
+  $top: 50%,
+  $left: 50%,
+  $transform: translate(-50%, -50%)
+) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  transform: $transform;
+}
+
+* {
+  //outline: 1px solid rgba(4, 208, 4, 0.296);
+  box-sizing: border-box;
+}
+
+body {
+  color: $color-texto;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  color: $color-texto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: $color-texto;
+}
+
+h1,
+h2 {
+  font-weight: 600;
+}
+
+h3,
+h4 {
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: $color-texto;
+}

@@ -1,0 +1,50 @@
+@use "variables";
+
+#hero {
+  background-color: variables.$color-rosa;
+  height: 500px;
+  width: 100%;
+  margin-top: variables.$altura-nav;
+  display: flex;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  #titulo {
+    clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
+    width: 50%;
+    background-color: variables.$color-rosa;
+    position: relative;
+    z-index: 9;
+    .texto {
+      @include variables.center-absolute($left: 40%);
+      h1,
+      h2 {
+        margin: 0;
+        font-family: variables.$font-titulo;
+        color: variables.$color-blanco;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 50px;
+        font-weight: variables.$font-w-titulo;
+      }
+      h2 {
+        margin-top: 10px;
+        font-size: 23px;
+        font-weight: variables.$font-w-subtitulo;
+      }
+    }
+  }
+  #imagen {
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    img {
+      width: 100%;
+    }
+  }
+}
