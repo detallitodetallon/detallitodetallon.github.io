@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <script>
+        const pageTitle = "Sets y Combos"; 
+    </script>
+    <script src="./js/main.js" defer></script>
+</head>
+
+<body>
+    <main id="main" style="display: none;">
+        <nav id="navegador"></nav>
+        <div id="hero-interno" style="background-image: url(./images/sets_y_combos.jpg);"></div>
+        <div id="hero-interno-mobile" style="background-image: url(./images/sets_y_combos_mobile.jpg);"></div>
+
+        <section class="container" id="catalogo" data-categoria="combos">
+            <div class="row">
+                <div class="col-md-3" id="mostrador-vertical">
+                    <h4>Categorias</h4>
+                    <ul class="nav nav-pills flex-column" id="tab-subcategorias" role="tablist"></ul>
+                </div>
+                <div class="col-md-9 productos" id="productos">
+                    <div class="tab-content" id="content-subcategorias"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="footer"></footer>
+    </main>
+
+    <script src="./libs/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

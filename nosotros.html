@@ -2,152 +2,94 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detallito Detallón - Nosotros</title>
-    <link rel="stylesheet" href="./libs/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="./libs/bootstrap-icons/font/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="./css/style.css">
+    <script>
+        const pageTitle = "Nosotros"; 
+    </script>
+    <script src="./js/main.js" defer></script>
 </head>
 
 <body>
-    <nav id="navegador">
-        <div id="logo">
-            <a href="./index.html"><img src="./images/logo-redondo.png" alt="" id="logo-img"></a>
-        </div>
-        <div id="menu">
-            <ul id="lista">
-                <li><a href="./nosotros.html" class="active">Nosotros</a></li>
-                <li><a href="./dia-del-padre.html">Día del padre</a></li>
-                <li><a href="./arreglos-de-globos.html">Arreglos de globos</a></li>
-                <li><a href="./arreglos-gigantes.html">Arreglos gigantes</a></li>
-                <li><a href="./arreglos-de-rosas.html">Arreglos de rosas</a></li>
-                <li><a href="./arreglos-con-helio.html">Arreglos con helio</a></li>
-            </ul>
-            <ul id="redes">
-                <li><a href="https://api.whatsapp.com/send/?phone=51940541547&text=Hola,%20quiero%20cotizar%20un%20arreglo%20de%20globos!"
-                        target="_blank"><i class="bi bi-whatsapp"></i></a></li>
-                <li><a href="https://www.facebook.com/detallitodetallon" target="_blank"><i
-                            class="bi bi-facebook"></i></a></li>
-                <li><a href="https://www.instagram.com/detallitodetallon/" target="_blank"><i
-                            class="bi bi-instagram"></i></a></li>
-                <li><a href="https://www.tiktok.com/@detallitodetallon" target="_blank"><i class="bi bi-tiktok"></i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <main id="main" style="display: none;">
+        <nav id="navegador"></nav>
+        <div id="hero-interno" style="background-image: url(./images/nosotros.jpg);"></div>
+        <div id="hero-interno-mobile" style="background-image: url(./images/nosotros_mobile.jpg);"></div>
 
-    <section class="container-fluid" id="hero">
-        <div id="titulo">
-            <div class="texto">
-                <h1>Sobre Nosotros</h1>
-                <h2>4 años de experiencia en globos</h2>
-            </div>
-        </div>
-        <div id="imagen"><img src="./images/nosotros.jpg" alt=""></div>
-    </section>
-
-    <section class="container" id="quienes-somos">
-        <div class="row align-items-center">
-            <div class="col-5">
-                <img src="./images/globos1.png" alt="" id="globos">
-            </div>
-            <div class="col-6 offset-md-1">
-                <h2>Bienvenidos a<br>Detallito Detallón</h2>
-                <p>En Detallito Detallón, somos especialistas en convertir momentos especiales en recuerdos
-                    inolvidables. Fundada hace 4 años en Arequipa, Perú, nuestra tienda ha crecido con una sola misión:
-                    ofrecer los mejores arreglos y decoraciones con globos para cualquier ocasión.</p>
-                <p>Creemos que los regalos son más que simples objetos envueltos; son una expresión de amor y
-                    sentimientos. Por ello, nos esforzamos para entregar arreglos significativos y experiencias
-                    memorables a nuestros clientes. Somos un negocio familiar comprometido con la calidad, la
-                    creatividad y el servicio al cliente.</p>
-                <p>Hacemos delivery a Arequipa y envíos a todo el Perú, asegurándonos de que nuestros productos lleguen
-                    a cualquier rincón del
-                    país, llevando alegría y emoción a cada destinatario.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="container-fluid" id="mision-vision">
-        <section class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="contenido">
-                        <div class="icon"><i class="bi bi-lightning-fill"></i></div>
-                        <div class="texto">
-                            <h3>Misión</h3>
-                            <p>Crear regalos que van más allá de lo material, ofreciendo arreglos de globos y
-                                decoraciones
-                                que expresen sentimientos y amor, transformando cada regalo en una experiencia
-                                significativa
-                                y memorable.</p>
-                        </div>
-                    </div>
+        <section class="container" id="quienes-somos">
+            <div class="row align-items-center">
+                <div class="col-md-5 col-12">
+                    <img src="./images/globos1.png" alt="" id="globos">
                 </div>
-                <div class="col">
-                    <div class="contenido">
-                        <div class="icon"><i class="bi bi-heart-fill"></i></div>
-                        <div class="texto">
-                            <h3>Visión</h3>
-                            <p>Ser la tienda de regalos y decoraciones con globos más querida y reconocida en todo el
-                                Perú,
-                                destacándonos por nuestra creatividad, calidad y dedicación en cada uno de nuestros
-                                productos, y
-                                convirtiendo cada ocasión en un momento inolvidable.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="contenido">
-                        <div class="icon"><i class="bi bi-star-fill"></i></div>
-                        <div class="texto">
-                            <h3>Valores</h3>
-                            <ul>
-                                <li>Calidad</li>
-                                <li>Creatividad</li>
-                                <li>Servicio al Cliente</li>
-                                <li>Compromiso</li>
-                                <li>Innovación</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="col-md-6 col-12 offset-md-1">
+                    <h2>Bienvenidos a<br>Detallito Detallón</h2>
+                    <p>En Detallito Detallón, somos especialistas en convertir momentos especiales en recuerdos
+                        inolvidables. Fundada hace 4 años en Arequipa, Perú, nuestra tienda ha crecido con una sola
+                        misión:
+                        ofrecer los mejores arreglos y decoraciones con globos para cualquier ocasión.</p>
+                    <p>Creemos que los regalos son más que simples objetos envueltos; son una expresión de amor y
+                        sentimientos. Por ello, nos esforzamos para entregar arreglos significativos y experiencias
+                        memorables a nuestros clientes. Somos un negocio familiar comprometido con la calidad, la
+                        creatividad y el servicio al cliente.</p>
+                    <p>Hacemos delivery a Arequipa y envíos a todo el Perú, asegurándonos de que nuestros productos
+                        lleguen
+                        a cualquier rincón del
+                        país, llevando alegría y emoción a cada destinatario.</p>
                 </div>
             </div>
         </section>
-    </section>
 
-    <footer>
-        <div id="conversacion-wsp">
-            <div class="contenido">
-                <h2>¡Cotiza tu Arreglo Aquí!</h2>
-                <a href="https://api.whatsapp.com/send/?phone=51940541547&text=Hola,%20quiero%20cotizar%20un%20arreglo%20de%20globos!"
-                    target="_blank">Escribenos
-                    a whatsapp</a>
-            </div>
-        </div>
-        <div id="franja">
-            <div>© 2024 Detallito Detallón</div>
-            <div id="redes">
-                <span>Desarrollado por <a href="#">Hipamar</a></span>
-                <ul>
-                    <li><a href="https://api.whatsapp.com/send/?phone=51940541547&text=Hola,%20quiero%20cotizar%20un%20arreglo%20de%20globos!"
-                            target="_blank"><i class="bi bi-whatsapp"></i></a></li>
-                    <li><a href="https://www.facebook.com/detallitodetallon" target="_blank"><i
-                                class="bi bi-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/detallitodetallon/" target="_blank"><i
-                                class="bi bi-instagram"></i></a></li>
-                    <li><a href="https://www.tiktok.com/@detallitodetallon" target="_blank"><i
-                                class="bi bi-tiktok"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+        <section class="container-fluid" id="mision-vision">
+            <section class="container">
+                <div class="row">
+                    <div class="col-md-4 col-12 tarjeta-mision">
+                        <div class="contenido">
+                            <div class="icon"><i class="bi bi-lightning-fill"></i></div>
+                            <div class="texto">
+                                <h3>Misión</h3>
+                                <p>Crear regalos que van más allá de lo material, ofreciendo arreglos de globos y
+                                    decoraciones
+                                    que expresen sentimientos y amor, transformando cada regalo en una experiencia
+                                    significativa
+                                    y memorable.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12 tarjeta-mision">
+                        <div class="contenido">
+                            <div class="icon"><i class="bi bi-heart-fill"></i></div>
+                            <div class="texto">
+                                <h3>Visión</h3>
+                                <p>Ser la tienda de regalos y decoraciones con globos más querida y reconocida en todo
+                                    el
+                                    Perú,
+                                    destacándonos por nuestra creatividad, calidad y dedicación en cada uno de nuestros
+                                    productos, y
+                                    convirtiendo cada ocasión en un momento inolvidable.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12 tarjeta-mision">
+                        <div class="contenido">
+                            <div class="icon"><i class="bi bi-star-fill"></i></div>
+                            <div class="texto">
+                                <h3>Valores</h3>
+                                <ul>
+                                    <li>Calidad</li>
+                                    <li>Creatividad</li>
+                                    <li>Servicio al Cliente</li>
+                                    <li>Compromiso</li>
+                                    <li>Innovación</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <footer id="footer"></footer>
+    </main>
+
+    <script src="./libs/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

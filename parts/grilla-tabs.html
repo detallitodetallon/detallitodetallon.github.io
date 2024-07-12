@@ -1,0 +1,59 @@
+<div class="{{cols}} producto-item" data-bs-toggle="modal"
+    data-bs-target="#productModal{{index}}">
+    <div class="imagen">
+        <img src="{{imagen}}" alt="">
+    </div>
+    <div class="descripcion">
+        <p class="titulo">{{nombre}}</p>
+        <p class="precio">{{precio}}</p>
+    </div>
+    <div class="detalles">
+        <button>Detalles del producto</button>
+    </div>
+</div>
+
+<div class="modal fade producto-modal" id="productModal{{index}}" tabindex="-1"
+    aria-labelledby="productModalLabel{{index}}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-12 col-img">
+                            <img src="{{imagen}}" class="img-fluid mb-3" alt="{{nombre}}">
+                        </div>
+                        <div class="col-lg-6 col-12 offset-lg-1 col-txt">
+                            <h5 class="modal-title" id="productModalLabel{{index}}">{{nombre}}</h5>
+                            <div class="modal-descripcion" id="modal-descripcion{{index}}">
+                                <p class="modal-subtitle">Descripción:</p>
+                                <p>{{descripcion}}</p>
+                            </div>
+                            <div class="modal-contenido" id="modal-contenido{{index}}">
+                                <p class="modal-subtitle">Contenido:</p>
+                                <ul>{{contenido}}</ul>
+                            </div>
+                            <div class="modal-video" id="modal-video{{index}}">
+                                <p class="modal-subtitle">Video:</p>
+                                <p><a href="{{video}}" class="video-enlace" target="_blank">Enlace hacia video TikTok</a></p>
+                            </div>
+
+                            <div class="modal-precio" id="modal-precio{{index}}">
+                                <p class="modal-subtitle">Precio:</p>
+                                <p>{{precio}}</p>
+                            </div>
+
+                            <div class="modal-pedido" id="modal-pedido{{index}}">
+                                <a href="https://api.whatsapp.com/send?phone=51940541547&text=Quiero%20adquirir%20el%20producto:%0ANombre:%20{{nombre}}.%0ACodigo-SKU:%20{{id}}."
+                                    target="blank_" class="wsp-pedido"><i class="bi bi-whatsapp"></i> Solicitar
+                                    producto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

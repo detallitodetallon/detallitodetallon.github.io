@@ -2,77 +2,185 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=dia-del-padre.html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detallito Detallón</title>
-    <script type="text/javascript">
-        window.location.href = "dia-del-padre.html";
+    <script>
+        const pageTitle = "Inicio"; 
     </script>
-    <link rel="stylesheet" href="./libs/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="./libs/bootstrap-icons/font/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/main.js"></script>
 </head>
 
 <body>
-    <nav id="navegador">
-        <div id="logo">
-            <a href="./index.html"><img src="./images/logo-redondo.png" alt="" id="logo-img"></a>
-        </div>
-        <div id="menu">
-            <ul id="lista">
-                <li><a href="./nosotros.html">Nosotros</a></li>
-                <li><a href="./dia-del-padre.html">Día del padre</a></li>
-                <li><a href="./arreglos-de-globos.html">Arreglos de globos</a></li>
-                <li><a href="./arreglos-gigantes.html">Arreglos gigantes</a></li>
-                <li><a href="./arreglos-de-rosas.html">Arreglos de rosas</a></li>
-                <li><a href="./arreglos-con-helio.html" class="active">Arreglos con helio</a></li>
-            </ul>
-            <ul id="redes">
-                <li><a href="https://api.whatsapp.com/send/?phone=51940541547&text=Hola,%20quiero%20cotizar%20un%20arreglo%20de%20globos!"
-                        target="_blank"><i class="bi bi-whatsapp"></i></a></li>
-                <li><a href="https://www.facebook.com/detallitodetallon" target="_blank"><i
-                            class="bi bi-facebook"></i></a></li>
-                <li><a href="https://www.instagram.com/detallitodetallon/" target="_blank"><i
-                            class="bi bi-instagram"></i></a></li>
-                <li><a href="https://www.tiktok.com/@detallitodetallon" target="_blank"><i class="bi bi-tiktok"></i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <main id="main" style="display: none;">
+        <nav id="navegador"></nav>
+        <div id="hero-principal" style="background-image: url(./images/hero.jpg);"></div>
+        <div id="hero-principal-mobile" style="background-image: url(./images/hero_mobile.jpg);"></div>
 
-    <footer>
-        <div id="conversacion-wsp">
-            <div class="contenido">
-                <h2>¡Cotiza tu Arreglo Aquí!</h2>
-                <a href="https://api.whatsapp.com/send/?phone=51940541547&text=Hola,%20quiero%20cotizar%20un%20arreglo%20de%20globos!"
-                    target="_blank">Escribenos
-                    a whatsapp</a>
+        <section class="container" id="sectiones-rapidas">
+            <div class="row">
+                <div class="col-md-6 col-6">
+                    <div class="btn-text arreglo">
+                        <div class="contenido">
+                            <p>Arreglos de <br><span>Globos</span></p>
+                            <a href="./arreglos-de-globos.html" class="btn-general">Más información</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-6">
+                    <div class="btn-text gigante">
+                        <div class="contenido">
+                            <p>Arreglos de globos <br><span>Gigantes</span></p>
+                            <a href="./arreglos-gigantes.html" class="btn-general">Más información</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="franja">
-            <div>© 2024 Detallito Detallón</div>
-            <div id="redes">
-                <span>Desarrollado por <a href="#">Hipamar</a></span>
-                <ul>
-                    <li><a href="https://api.whatsapp.com/send/?phone=51940541547&text=Hola,%20quiero%20cotizar%20un%20arreglo%20de%20globos!"
-                            target="_blank"><i class="bi bi-whatsapp"></i></a></li>
-                    <li><a href="https://www.facebook.com/detallitodetallon" target="_blank"><i
-                                class="bi bi-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/detallitodetallon/" target="_blank"><i
-                                class="bi bi-instagram"></i></a></li>
-                    <li><a href="https://www.tiktok.com/@detallitodetallon" target="_blank"><i
-                                class="bi bi-tiktok"></i></a></li>
+        </section>
+
+        <section class="container" id="productos-rapidos">
+            <h2 class="text-center titulo-seccion">Conoce nuestros arreglos</h2>
+            <div class="container" id="mostrador">
+                <ul class="nav nav-pills nav-fill" id="tab-categorias" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="globos-tab" data-bs-toggle="pill" data-bs-target="#globos"
+                            type="button" role="tab" aria-controls="globos" aria-selected="true"><i
+                                class="bi bi-gift"></i> Arreglo de
+                            globos</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="gigantes-tab" data-bs-toggle="pill" data-bs-target="#gigantes"
+                            type="button" role="tab" aria-controls="gigantes" aria-selected="false"><i
+                                class="bi bi-align-bottom"></i> Arreglos
+                            gigantes</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="flores-tab" data-bs-toggle="pill" data-bs-target="#flores"
+                            type="button" role="tab" aria-controls="flores" aria-selected="false"><i
+                                class="bi bi-flower1"></i> Arreglos de
+                            flores</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="helio-tab" data-bs-toggle="pill" data-bs-target="#helio"
+                            type="button" role="tab" aria-controls="helio" aria-selected="false"><i
+                                class="bi bi-balloon-heart"></i> Arreglos con
+                            helio</button>
+                    </li>
                 </ul>
             </div>
-        </div>
-    </footer>
+
+            <div class="tab-content" id="content-categorias">
+                <div class="tab-pane fade show active" id="globos" role="tabpanel" aria-labelledby="globos-tab"
+                    tabindex="0">
+                    <div class="row productos"></div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="./arreglos-de-globos.html" class="btn-rosa">¡Ver más Arreglos de
+                                globos!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="gigantes" role="tabpanel" aria-labelledby="gigantes-tab" tabindex="0">
+                    <div class="row productos"></div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="./arreglos-gigantes.html" class="btn-rosa">¡Ver más Arreglos de
+                                globos gigantes!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="flores" role="tabpanel" aria-labelledby="flores-tab" tabindex="0">
+                    <div class="row productos"></div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="./arreglos-de-flores.html" class="btn-rosa">¡Ver más Arreglos de
+                                flores!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="helio" role="tabpanel" aria-labelledby="helio-tab" tabindex="0">
+                    <div class="row productos"></div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="./arreglos-con-helio.html" class="btn-rosa">¡Ver más Arreglos con
+                                helio!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="pasos-compra">
+            <h2 class="text-center titulo-seccion">Como comprar con nosotros</h2>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="caja-informativa">
+                        <div class="numero">
+                            <p>1</p>
+                        </div>
+                        <div class="titulo">
+                            <p>Selecciona el Arreglo que Deseas</p>
+                        </div>
+                        <div class="texto">
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Explora nuestra variedad de arreglos y elige el que más te guste.</span></p>
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Haz Click en "Solicitar Producto"</span></p>
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Inicia el proceso de compra directamente desde nuestra web a whatsapp</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="caja-informativa">
+                        <div class="numero">
+                            <p>2</p>
+                        </div>
+                        <div class="titulo">
+                            <p>Elige un Tipo de Entrega</p>
+                        </div>
+                        <div class="texto">
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Delivery: El costo depende de tu ubicación. Envíanos tu dirección para calcular el costo
+                                exacto.</span></p>
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Recojo: Recoje tu pedido en nuestro taller ubicado en el distrito de Paucarpata.</span></p>
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Coordina la fecha y el rango horario.</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="caja-informativa">
+                        <div class="numero">
+                            <p>3</p>
+                        </div>
+                        <div class="titulo">
+                            <p>Pago</p>
+                        </div>
+                        <div class="texto">
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Aceptamos Yape y efectivo</span></p>
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Para procesar tu pedido, necesitamos un depósito inicial del 50% del monto total al momento de la
+                                solicitud.</span></p>
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Antes de enviar o recoger el pedido, se debe completar el pago total del producto.</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="caja-informativa">
+                        <div class="numero">
+                            <p>4</p>
+                        </div>
+                        <div class="titulo">
+                            <p>Información del Pedido</p>
+                        </div>
+                        <div class="texto">
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Destinatario: Indica el nombre y número de celular del destinatario</span></p>
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Ubicación: Envíanos tu ubicación exacta y sé lo más claro posible en la dirección.
+                                Coordina la fecha y el rango horario de entrega.</span></p>
+                            <p><i class="bi bi-caret-right-fill"></i> <span>Confirmación: Te enviaremos una foto del producto cuando esté listo para ser enviado o
+                                recoger.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="footer"></footer>
+    </main>
+
+    <script src="./libs/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
