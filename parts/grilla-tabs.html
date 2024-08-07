@@ -26,7 +26,10 @@
                             <img src="{{imagen}}" class="img-fluid mb-3" alt="{{nombre}}">
                         </div>
                         <div class="col-lg-6 col-12 offset-lg-1 col-txt">
-                            <h5 class="modal-title" id="productModalLabel{{index}}">{{nombre}}</h5>
+                            <div class="modal-title" id="productModalLabel{{index}}">
+                                <h5>{{nombre}}</h5>
+                                <span>SKU: {{sku}}</span>
+                            </div>
                             <div class="modal-descripcion" id="modal-descripcion{{index}}">
                                 <p class="modal-subtitle">Descripción:</p>
                                 <p>{{descripcion}}</p>
@@ -46,7 +49,7 @@
                             </div>
 
                             <div class="modal-pedido" id="modal-pedido{{index}}">
-                                <a href="https://api.whatsapp.com/send?phone=51940541547&text=Quiero%20adquirir%20el%20producto:%0ANombre:%20{{nombre}}.%0ACodigo-SKU:%20{{id}}."
+                                <a href="https://api.whatsapp.com/send?phone=51940541547&text=Quiero%20adquirir%20el%20producto:%0ANombre:%20{{nombre}}.%0ASKU:%20{{sku}}."
                                     target="blank_" class="wsp-pedido"><i class="bi bi-whatsapp"></i> Solicitar
                                     producto</a>
                             </div>
