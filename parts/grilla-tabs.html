@@ -1,5 +1,4 @@
-<div class="{{cols}} producto-item" data-bs-toggle="modal"
-    data-bs-target="#productModal{{index}}">
+<div class="{{cols}} producto-item" data-bs-toggle="modal" data-bs-target="#productModal{{index}}">
     <div class="imagen">
         <img src="{{imagen}}" alt="">
     </div>
@@ -28,7 +27,10 @@
                         <div class="col-lg-6 col-12 offset-lg-1 col-txt">
                             <div class="modal-title" id="productModalLabel{{index}}">
                                 <h5>{{nombre}}</h5>
-                                <span>SKU: {{sku}}</span>
+                                <span class="sku">SKU: {{sku}}</span>
+                            </div>
+                            <div class="modal-precio" id="modal-precio{{index}}" data-precio="{{precio}}">
+                                <p>{{precio}}</p>
                             </div>
                             <div class="modal-descripcion" id="modal-descripcion{{index}}">
                                 <p class="modal-subtitle">Descripción:</p>
@@ -40,18 +42,33 @@
                             </div>
                             <div class="modal-video" id="modal-video{{index}}">
                                 <p class="modal-subtitle">Video:</p>
-                                <p><a href="{{video}}" class="video-enlace" target="_blank">Enlace hacia video TikTok</a></p>
+                                <p><a href="{{video}}" class="video-enlace" target="_blank">Enlace hacia video
+                                        TikTok</a></p>
                             </div>
-
-                            <div class="modal-precio" id="modal-precio{{index}}">
-                                <p class="modal-subtitle">Precio:</p>
-                                <p>{{precio}}</p>
+                            <div class="modal-peluches" id="modal-peluches{{index}}">
+                                <p class="modal-subtitle">Incluir peluche:</p>
+                                <div id="carouselPeluches{{index}}" class="carousel slide" data-bs-ride="false">
+                                    <div class="carousel-inner"></div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselPeluches{{index}}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselPeluches{{index}}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
                             </div>
+                            <!-- <div class="modal-agregados" id="modal-agregados{{index}}">
+                                <p class="modal-subtitle">Incluir adicional:</p>
+                            </div> -->
 
                             <div class="modal-pedido" id="modal-pedido{{index}}">
-                                <a href="https://api.whatsapp.com/send?phone=51940541547&text=Quiero%20adquirir%20el%20producto:%0ANombre:%20{{nombre}}.%0ASKU:%20{{sku}}."
+                                <a href="https://api.whatsapp.com/send?phone=51940541547&text=Quiero%20adquirir%20el%20producto:%0ANombre:%20{{nombre}}.%0ASKU:%20{{sku}}.%0APrecio%20Total:%20{{precio}}."
                                     target="blank_" class="wsp-pedido"><i class="bi bi-whatsapp"></i> Solicitar
-                                    producto al WhatsApp</a>
+                                    producto</a>
                             </div>
                         </div>
                     </div>
