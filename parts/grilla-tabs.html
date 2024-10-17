@@ -15,17 +15,15 @@
     aria-labelledby="productModalLabel{{index}}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
             <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5 col-12 col-img">
                             <img src="{{imagen}}" class="img-fluid mb-3" alt="{{nombre}}">
                         </div>
                         <div class="col-lg-6 col-12 offset-lg-1 col-txt">
-                            <div class="modal-title" id="productModalLabel{{index}}">
+                            <div class="modal-title" id="productModalLabel{{index}}" data-sku="{{sku}}" data-nombre="{{nombre}}">
                                 <h5>{{nombre}}</h5>
                                 <span class="sku">SKU: {{sku}}</span>
                             </div>
@@ -45,6 +43,7 @@
                                 <p><a href="{{video}}" class="video-enlace" target="_blank">Enlace hacia video
                                         TikTok</a></p>
                             </div>
+                            
                             <div class="modal-peluches" id="modal-peluches{{index}}">
                                 <p class="modal-subtitle">Incluir peluche:</p>
                                 <div id="carouselPeluches{{index}}" class="carousel slide" data-bs-ride="false">
@@ -61,14 +60,27 @@
                                     </button>
                                 </div>
                             </div>
-                            <!-- <div class="modal-agregados" id="modal-agregados{{index}}">
-                                <p class="modal-subtitle">Incluir adicional:</p>
-                            </div> -->
+                            
+                            <div class="modal-vinil" id="moda-vinil{{index}}">
+                                <p class="modal-subtitle">Incluir mensaje personalizado:</p>
+                                <div class="mensaje" id="mensaje{{index}}">
+                                    <label class="checkvinil" for="checkvinil{{index}}">
+                                        <input type="checkbox" name="checkvinil{{index}}" id="checkvinil{{index}}">
+                                        <span>Agregar mensaje personalizado para globo - S/.6.00</span>
+                                    </label>
+                                    <br />
+                                    <label class="textvinil" for="textvinil{{index}}">
+                                        <input type="text" name="textvinil{{index}}" id="textvinil{{index}}" placeholder="Mensaje">
+                                        <br><span>El mensaje personalizado debe tener un máximo de 50 caracteres</span>
+                                    </label>
+                                </div>
+                            </div>
 
                             <div class="modal-pedido" id="modal-pedido{{index}}">
-                                <a href="https://api.whatsapp.com/send?phone=51940541547&text=Quiero%20adquirir%20el%20producto:%0ANombre:%20{{nombre}}.%0ASKU:%20{{sku}}.%0APrecio%20Total:%20{{precio}}."
+                                <a href="https://api.whatsapp.com/send?phone=51940541547&text=Quiero adquirir el producto:%0ANombre: {{nombre}}.%0ASKU: {{sku}}.%0APrecio Total: {{precio}}."
                                     target="blank_" class="wsp-pedido"><i class="bi bi-whatsapp"></i> Solicitar
-                                    producto</a>
+                                    producto *</a>
+                                    <span class="note">(*) El mensaje de whatsapp no debe ser alterado</span>
                             </div>
                         </div>
                     </div>
