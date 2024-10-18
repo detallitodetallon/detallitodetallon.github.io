@@ -76,11 +76,43 @@
                                 </div>
                             </div>
 
+                            <div class="modal-total" id="modal-total{{index}}">
+                                <p class="modal-subtitle">Resumen del pedido:</p>
+                                <div class="pedido">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col">Precio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="row-arreglo{{index}}">
+                                                <td id="nombre-arreglo{{index}}">Arreglo: {{nombre}} (SKU: {{sku}})</td>
+                                                <td id="precio-arreglo{{index}}">{{precio}}</td>
+                                            </tr>
+                                            <tr id="row-peluche{{index}}">
+                                                <td id="nombre-peluche{{index}}"></td>
+                                                <td id="precio-peluche{{index}}"></td>
+                                            </tr>
+                                            <tr id="row-vinil{{index}}">
+                                                <td id="nombre-vinil{{index}}"></td>
+                                                <td id="precio-vinil{{index}}"></td>
+                                            </tr>
+                                            <tr class="total">
+                                                <td>Total:</td>
+                                                <td id="precio-total{{index}}">{{precio}}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>    
+
                             <div class="modal-pedido" id="modal-pedido{{index}}">
                                 <a href="https://api.whatsapp.com/send?phone=51940541547&text=Quiero adquirir el producto:%0ANombre: {{nombre}}.%0ASKU: {{sku}}.%0APrecio Total: {{precio}}."
-                                    target="blank_" class="wsp-pedido"><i class="bi bi-whatsapp"></i> Solicitar
-                                    producto *</a>
-                                    <span class="note">(*) El mensaje de whatsapp no debe ser alterado</span>
+                                    target="blank_" class="wsp-pedido"><i class="bi bi-whatsapp"></i>Comprar pedido *</a>
+                                    <span class="note">(*)Serás redirigido a WhatsApp para continuar con la compra. No modifiques, ni elimines el mensaje de whatsapp</span>
                             </div>
                         </div>
                     </div>
