@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <script>
+        const pageTitle = "Arreglos con helio"; 
+    </script>
+    <script src="./js/main.js" defer></script>
+</head>
+
+<body id="category-page">
+    <main id="main" style="display: none;">
+        <nav id="navegador"></nav>
+        <div id="hero-interno" style="background-image: url(./images/helio.jpg);"></div>
+        <div id="hero-interno-mobile" style="background-image: url(./images/helio_mobile.jpg);"></div>
+        <div class="" id="banner-top"></div>
+        
+        <section class="container" id="informacion">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center">Ya sea como regalo sorpresa o para agregar un toque festivo a tus
+                        celebraciones, nuestros globos con helio llenan de alegría cualquier espacio. ¡Haz que tus momentos especiales sean aún más memorables con
+                        nuestros globos de helio!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="catalogo" data-categoria="helio">
+            <div class="row">
+                <div class="col-md-3" id="mostrador-vertical">
+                    <h4>Categorias</h4>
+                    <ul class="nav nav-pills flex-column" id="tab-subcategorias" role="tablist"></ul>
+                </div>
+                <div class="col-md-9 productos" id="productos">
+                    <div class="tab-content" id="content-subcategorias"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="pasos-compra"></section>
+        <footer id="footer"></footer>
+    </main>
+
+    <script src="./libs/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
