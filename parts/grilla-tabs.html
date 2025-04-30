@@ -1,130 +1,15 @@
-<div class="{{cols}} producto-item" data-bs-toggle="modal" data-bs-target="#productModal{{index}}">
+<div class="{{cols}} producto-item" data-sku="{{sku}}">
     <div class="card-producto">
         <div class="imagen">
-            <img src="{{imagen}}" alt="">
+            <img src="{{imagen}}" alt="" loading="lazy">
         </div>
         <div class="descripcion">
             <p class="titulo">{{nombre}}</p>
             <p class="precio">{{precio}}</p>
-            <p class="notas">El precio no incluye peluche o mensaje personalizado. Agrégalos en "Completar producto"</p>
+            <p class="notas">{{notas}}</p>
         </div>
         <div class="detalles">
-            <button>Completar producto</button>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade producto-modal" id="productModal{{index}}" tabindex="-1"
-    aria-labelledby="productModalLabel{{index}}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-12 col-img">
-                            <img src="{{imagen}}" class="img-fluid mb-3" alt="{{nombre}}">
-                        </div>
-                        <div class="col-lg-6 col-12 offset-lg-1 col-txt">
-                            <div class="modal-title" id="productModalLabel{{index}}" data-sku="{{sku}}"
-                                data-nombre="{{nombre}}">
-                                <h5>{{nombre}}</h5>
-                                <span class="sku">SKU: {{sku}}</span>
-                            </div>
-                            <div class="modal-precio" id="modal-precio{{index}}" data-precio="{{precio}}">
-                                <p>{{precio}}</p>
-                            </div>
-                            <div class="modal-descripcion" id="modal-descripcion{{index}}">
-                                <p class="modal-subtitle">Descripción:</p>
-                                <p>{{descripcion}}</p>
-                            </div>
-                            <div class="modal-contenido" id="modal-contenido{{index}}">
-                                <p class="modal-subtitle">Contenido:</p>
-                                <ul>{{contenido}}</ul>
-                            </div>
-                            <div class="modal-video" id="modal-video{{index}}">
-                                <p class="modal-subtitle">Video:</p>
-                                <p><a href="{{video}}" class="video-enlace" target="_blank">Enlace hacia video
-                                        TikTok</a></p>
-                            </div>
-
-                            <div class="modal-peluches" id="modal-peluches{{index}}">
-                                <p class="modal-subtitle">Incluir peluche:</p>
-                                <div id="carouselPeluches{{index}}" class="carousel slide" data-bs-ride="false">
-                                    <div class="carousel-inner"></div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselPeluches{{index}}" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselPeluches{{index}}" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="modal-vinil" id="moda-vinil{{index}}">
-                                <p class="modal-subtitle">Incluir mensaje personalizado:</p>
-                                <div class="mensaje" id="mensaje{{index}}">
-                                    <label class="checkvinil" for="checkvinil{{index}}">
-                                        <input type="checkbox" name="checkvinil{{index}}" id="checkvinil{{index}}">
-                                        <span>Agregar mensaje personalizado para globo - S/.6.00</span>
-                                    </label>
-                                    <br />
-                                    <label class="textvinil" for="textvinil{{index}}">
-                                        <input type="text" name="textvinil{{index}}" id="textvinil{{index}}"
-                                            placeholder="Mensaje">
-                                        <br><span>El mensaje personalizado debe tener un máximo de 50 caracteres</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="modal-total" id="modal-total{{index}}">
-                                <p class="modal-subtitle">Resumen del pedido:</p>
-                                <div class="pedido">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Producto</th>
-                                                <th scope="col">Precio</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr id="row-arreglo{{index}}">
-                                                <td id="nombre-arreglo{{index}}">Arreglo: {{nombre}} (SKU: {{sku}})</td>
-                                                <td id="precio-arreglo{{index}}">{{precio}}</td>
-                                            </tr>
-                                            <tr id="row-peluche{{index}}">
-                                                <td id="nombre-peluche{{index}}"></td>
-                                                <td id="precio-peluche{{index}}"></td>
-                                            </tr>
-                                            <tr id="row-vinil{{index}}">
-                                                <td id="nombre-vinil{{index}}"></td>
-                                                <td id="precio-vinil{{index}}"></td>
-                                            </tr>
-                                            <tr class="total">
-                                                <td>Total:</td>
-                                                <td id="precio-total{{index}}">{{precio}}</td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <div class="modal-pedido" id="modal-pedido{{index}}">
-                                <a href="https://api.whatsapp.com/send?phone=51940541547&text=Pedido de compra:%0A(*)Arreglo: {{nombre}} (SKU:{{sku}}) - {{precio}}%0A(*)Peluche: No incluye peluche%0A(*)Mensaje: No incluye mensaje personalizado%0A(*)Precio Total: {{precio}}"
-                                    target="blank_" class="wsp-pedido"><i class="bi bi-whatsapp"></i>Comprar pedido
-                                    *</a>
-                                <span class="note">(*)Serás redirigido a WhatsApp para continuar con la compra. No
-                                    modifiques, ni elimines el mensaje de whatsapp</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <button>Ver producto</button>
         </div>
     </div>
 </div>

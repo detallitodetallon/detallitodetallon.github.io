@@ -1,1 +1,1211 @@
-!function(){var e=[,function(e,t,o){"use strict";o.r(t);var r=o(2);async function n(e,t,o){try{const r=await fetch(e),n=await r.text();document.getElementById(t).innerHTML=n,o&&o()}catch(e){console.error(`Error loading component ${t}:`,e)}}document.addEventListener("DOMContentLoaded",(async()=>{try{await async function(){try{const e=await fetch("./parts/head.html");let t=await e.text();t="undefined"!=typeof pageTitle?t.replace("{{pageTitle}}",pageTitle):t.replace("{{pageTitle}}",""),document.head.innerHTML+=t}catch(e){throw console.error("Error loading head:",e),e}}(),await Promise.all([n("./parts/banner-top.html","banner-top"),n("./parts/nav.html","navegador",r.setActiveNavLink),n("./parts/pasos-compra.html","pasos-compra"),n("./parts/footer.html","footer")]),document.body.classList.contains("index")}catch(e){console.error("Error loading head or components:",e)}finally{setTimeout((()=>{document.getElementById("main").style.display=""}),300)}}))},function(e,t,o){"use strict";function r(){const e=document.querySelectorAll(".navlista a"),t=window.location.pathname;e.forEach((e=>{e.getAttribute("href")==="."+t&&e.classList.add("active")}))}function n(e){Object.keys(e).forEach((t=>{e[t].sort(((e,t)=>parseFloat(e.precio.replace("S/.","").trim())-parseFloat(t.precio.replace("S/.","").trim())))}))}o.r(t),o.d(t,{orderPrice:function(){return n},setActiveNavLink:function(){return r}})},function(e,t,o){"use strict";o.r(t),o.d(t,{dataPedido:function(){return l},fetchTemplate:function(){return n},generateProductHtml:function(){return s},handlePeluches:function(){return p},handleProducto:function(){return d},handleVinil:function(){return g},hideEmptyModals:function(){return i},initializeModals:function(){return c},whatsappUrl:function(){return a}});var r=o(4);const n=async()=>{try{const e=await fetch("./parts/grilla-tabs.html");return await e.text()}catch(e){throw console.error("Error fetching grilla-tabs.html:",e),e}},c=()=>{document.querySelectorAll(".modal").forEach((e=>new bootstrap.Modal(e)))};function a(e){let t="https://api.whatsapp.com/send?phone=51940541547&text=";t+="Pedido de compra:",t+=`%0A(*)Arreglo: ${e.producto.nombre} (SKU:${e.producto.sku}) - S/${e.producto.precio}`,0!==e.peluche.precio?t+=`%0A(*)Peluche: ${e.peluche.nombre} (SKU:${e.peluche.sku}) - S/${e.peluche.precio}`:t+="%0A(*)Peluche: No incluye peluche",0!==e.vinil.precio?t+=`%0A(*)Mensaje: "${e.vinil.mensaje}" - S/${e.vinil.precio}`:t+="%0A(*)Mensaje: No incluye mensaje personalizado",t+=`%0A(*)Precio Total: S/${e.precioTotal}`,e.enlace.href=t}function i(){const e=document.querySelectorAll(".modal-contenido"),t=document.querySelectorAll(".modal-video");e.forEach((e=>{0===e.querySelector("ul").children.length&&(e.style.display="none")})),t.forEach((e=>{const t=window.location,o=e.querySelector(".video-enlace").getAttribute("href");o&&o!==t&&""!==o||(e.style.display="none")}))}const l={producto:{nombre:"",sku:"",precio:0},peluche:{nombre:"",sku:"",precio:0},vinil:{mensaje:"",precio:0},get precioTotal(){return(parseFloat(this.producto.precio)+parseFloat(this.peluche.precio)+parseFloat(this.vinil.precio)).toFixed(2)},enlace:""},s=(e,t,o,r,n)=>e.replace(/{{cols}}/g,"col-xl-4 col-lg-4 col-md-6 col-12").replace(/{{imagen}}/g,t.imagen).replace(/{{nombre}}/g,t.nombre).replace(/{{precio}}/g,t.precio).replace(/{{video}}/g,t.video).replace(/{{descripcion}}/g,t.descripcion).replace(/{{contenido}}/g,n).replace(/{{index}}/g,`${o}-${r}`).replace(/{{sku}}/g,t.sku),d=()=>{document.querySelectorAll(".producto-item").forEach((e=>{e.addEventListener("click",u)}))},u=e=>{const t=e.currentTarget.getAttribute("data-bs-target"),o=document.querySelector(t),r=o.querySelector(".modal-title"),n=o.querySelector(".modal-precio"),c=parseFloat(n.dataset.precio.replace("S/.","").trim());l.producto.nombre=r.dataset.nombre,l.producto.sku=r.dataset.sku,l.producto.precio=c.toFixed(2),l.peluche.nombre="",l.peluche.sku="",l.peluche.precio=0,l.vinil.mensaje="",l.vinil.precio=0,l.enlace=""},p=async()=>{try{const e=await(0,r.fetchPeluches)();document.querySelectorAll(".modal").forEach((t=>{const o=t.id.replace("productModal",""),r=document.getElementById(`modal-pedido${o}`).querySelector(".wsp-pedido"),n=document.getElementById(`precio-total${o}`),c=document.getElementById(`modal-peluches${o}`).querySelector(".carousel-inner");m(e,c,n,r,o)}))}catch(e){console.error("Error fetching peluches:",e)}},m=(e,t,o,r,n)=>{let c="";e.forEach(((t,o)=>{o%2==0&&(o>0&&(c+="</div>"),c+=`<div class="row carousel-item ${0===o?"active":""}">`),c+=`\n            <div class="col-6 peluche" data-id="${t.sku}" data-precio="${t.precio}" data-nombre="Peluche ${t.nombre}" data-sku="${t.sku}">\n                <img src="${t.imagen}" class="d-block w-100" alt="${t.nombre}">\n                <div class="info-peluche">\n                    <h5 class="nombre">${t.nombre}</h5>\n                    <p class="precio">${t.precio}</p>\n                    <p class="tamanio">Medidas:<br /> ${t.altura}</p>\n                    <button class="select-peluche">Agregar</button>\n                </div>\n            </div>\n        `,o===e.length-1&&(c+="</div>")})),t.innerHTML=c,h(t,o,r,n)},h=(e,t,o,r)=>{const n=e.querySelectorAll(".peluche"),c=document.getElementById(`row-peluche${r}`),i=c.querySelector(`#nombre-peluche${r}`),s=c.querySelector(`#precio-peluche${r}`);n.forEach((e=>{e.addEventListener("click",(()=>{const r=e.dataset.precio,d=parseFloat(r.replace("S/.","").trim()),u=e.querySelector(".select-peluche");u.classList.contains("active")?(l.peluche.nombre="",l.peluche.sku="",l.peluche.precio=0,u.classList.remove("active"),u.innerText="Agregar",c.style.display="none",i.innerText="",s.innerText=""):(n.forEach((e=>{const t=e.querySelector(".select-peluche");t.classList.remove("active"),t.innerText="Agregar"})),l.peluche.nombre=e.dataset.nombre,l.peluche.sku=e.dataset.sku,l.peluche.precio=d.toFixed(2),u.classList.add("active"),u.innerText="Agregado",c.style.display="table-row",i.innerText=`Peluche: ${e.dataset.nombre} (SKU: ${e.dataset.sku})`,s.innerText=`S/.${d.toFixed(2)}`),t.innerText=`S/.${l.precioTotal}`,l.enlace=o,a(l)}))}))},g=()=>{document.querySelectorAll(".modal").forEach((e=>{const t=e.id.replace("productModal",""),o=document.getElementById(`moda-vinil${t}`),r=o.querySelector(`#checkvinil${t}`),n=o.querySelector(".textvinil"),c=n.querySelector(`#textvinil${t}`),i=document.getElementById(`precio-total${t}`),s=document.getElementById(`modal-pedido${t}`).querySelector(".wsp-pedido"),d=document.getElementById(`row-vinil${t}`),u=d.querySelector(`#nombre-vinil${t}`),p=d.querySelector(`#precio-vinil${t}`);n.style.display="none",r.addEventListener("change",(()=>{n.style.display=r.checked?"block":"none",r.checked||(c.value="",l.vinil.mensaje="",l.vinil.precio=0,d.style.display="none",u.innerText="",p.innerText=""),i.innerText=`S/.${l.precioTotal}`,l.enlace=s,a(l)})),c.addEventListener("input",(()=>{c.value.length>50&&(c.value=c.value.slice(0,50)),""==c.value?(l.vinil.mensaje="",l.vinil.precio=0,d.style.display="none",u.innerText="",p.innerText=""):(l.vinil.mensaje=c.value,l.vinil.precio=parseFloat(6).toFixed(2),d.style.display="table-row",u.innerText=`Mensaje: "${c.value}"`,p.innerText=`S/.${parseFloat(6).toFixed(2)}`),i.innerText=`S/.${l.precioTotal}`,l.enlace=s,a(l)}))}))}},function(e,t,o){"use strict";async function r(e,t){const o=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/1UeRsfG_I1Ai27zZuWNzL4CYHdP9gzCd49Sz1IkNBtmE/values/${e}!${t}?key=AIzaSyB0wl-sQaS72bOzVKBbsdgPKMK9_IYlUWA`);return(await o.json()).values.slice(1)}function n(e){if(e.includes("drive.google.com/file/d/")){return`https://drive.google.com/thumbnail?id=${e.match(/\/d\/(.*?)\//)[1]}&sz=w1000`}return e}function c(e){return{id:e[0],imagen:e[1]?n(e[1]):null,nombre:e[2],precio:e[3],descripcion:e[4],contenido:e[5]?e[5].split("; "):[],video:e[6]||"",subcategorias:e[7]?e[7].split("; "):[],sku:e[8],destacado:!!e[9]&&"true"===e[9].toLowerCase()}}function a(e){return{id:e[0],imagen:n(e[1]),precio:e[2],nombre:e[3],altura:e[4],sku:e[5]}}async function i(){return(await r("Productos","A:K")).map(c).filter((e=>e.id))}async function l(){return(await r("Arreglos","A:J")).map(c).filter((e=>e.id))}async function s(){return(await r("Gigantes","A:J")).map(c).filter((e=>e.id))}async function d(){return(await r("Helios","A:J")).map(c).filter((e=>e.id))}async function u(){return(await r("Flores","A:J")).map(c).filter((e=>e.id))}async function p(){return(await r("Peluches","A:F")).map(a).filter((e=>e.id))}o.r(t),o.d(t,{fetchArreglos:function(){return l},fetchFlores:function(){return u},fetchGigantes:function(){return s},fetchHelios:function(){return d},fetchPeluches:function(){return p},fetchProducts:function(){return i}})},function(e,t,o){"use strict";o.r(t);var r=o(4),n=o(3),c=o(2);document.addEventListener("DOMContentLoaded",(()=>{if(!document.getElementById("mostrador"))return;const e={globos:[],gigantes:[],flores:[],helio:[]},t=(e,t)=>{Object.keys(e).forEach((o=>{const r=document.querySelector(`#${o} .productos`);e[o].forEach(((e,c)=>{if(!e.id)return;const a=e.contenido.length>0?e.contenido.map((e=>`<li>${e}</li>`)).join(""):"";t.replace(/{{cols}}/g,"col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-12").replace(/{{imagen}}/g,e.imagen).replace(/{{nombre}}/g,e.nombre).replace(/{{precio}}/g,e.precio).replace(/{{video}}/g,e.video).replace(/{{descripcion}}/g,e.descripcion).replace(/{{contenido}}/g,a).replace(/{{index}}/g,e.categoria+c).replace(/{{sku}}/g,e.sku);r.innerHTML+=(0,n.generateProductHtml)(t,e,o,c,a)}))}))},o=async()=>{try{const o=await(0,n.fetchTemplate)();await(async o=>{try{return(await(0,r.fetchProducts)()).forEach((t=>{t.destacado&&e[t.categoria].push(t)})),(0,c.orderPrice)(e),Object.keys(e).forEach((t=>{e[t]=e[t].slice(0,4)})),t(e,o),(0,n.initializeModals)(),e}catch(e){throw console.error("Error processing products:",e),e}})(o),(0,n.hideEmptyModals)(),(0,n.handleProducto)(),(0,n.handleVinil)(),await(0,n.handlePeluches)()}catch(e){console.error("Error initializing mostrador:",e)}};"index"===document.body.id&&o()}))},function(e,t,o){"use strict";o.r(t);var r=o(4),n=o(3),c=o(2);document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("catalogo");if(!e)return;const t=e.dataset.categoria,o=e=>e.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9\-]/g,""),a=e=>{const t={};return e.forEach((e=>{e.subcategorias.forEach((o=>{t[o]||(t[o]=[]),t[o].push(e)}))})),t},i=(e,t,r,n)=>{Object.keys(e).sort().forEach(((c,a)=>{const i=`subcategoria-${o(c)}`,d=0===a,u=d?"active":"";t.appendChild(l(c,i,u,d)),r.appendChild(s(e[c],c,i,d,n))}))},l=(e,t,r,n)=>{const c=document.createElement("li");return c.classList.add("nav-item"),c.innerHTML=`\n            <button class="nav-link ${r}" id="${t}-tab" data-bs-toggle="pill"\n                data-bs-target="#${t}" data-parametro="${o(e)}" type="button" role="tab" aria-controls="${t}"\n                aria-selected="${n}"><i class="bi bi-arrow-right-short"></i> ${e}</button>\n        `,c},s=(e,t,r,c,a)=>{const i=document.createElement("div");i.classList.add("tab-pane","fade"),c&&i.classList.add("show","active"),i.id=r,i.setAttribute("role","tabpanel"),i.setAttribute("aria-labelledby",`${r}-tab`),i.setAttribute("tabindex","0");const l=document.createElement("div");return l.classList.add("row","productos"),i.appendChild(l),e.forEach(((e,r)=>{if(!e.id)return;const c=e.contenido.length>0?e.contenido.map((e=>`<li>${e}</li>`)).join(""):"";l.innerHTML+=(0,n.generateProductHtml)(a,e,o(t),r,c)})),i},d=async e=>{try{const t=await(0,n.fetchTemplate)();await(async(e,t)=>{try{const o=await t(),r=a(o);(0,c.orderPrice)(r);const l=document.getElementById("tab-subcategorias"),s=document.getElementById("content-subcategorias");return i(r,l,s,e),(0,n.initializeModals)(),r}catch(e){throw console.error("Error processing products:",e),e}})(t,e),(()=>{const e=new Event("subcategorias-loaded");document.dispatchEvent(e)})(),(0,n.hideEmptyModals)(),(0,n.handleProducto)(),(0,n.handleVinil)(),await(0,n.handlePeluches)()}catch(e){console.error("Error initializing mostrador:",e)}};"category-page"===document.body.id&&("globos"===t?d(r.fetchArreglos):"gigantes"===t?d(r.fetchGigantes):"helio"===t?d(r.fetchHelios):"flores"===t?d(r.fetchFlores):d())}))},function(){document.addEventListener("subcategorias-loaded",(()=>{const e=new URLSearchParams(window.location.search),t=e.get("categoria");if(t){const e=document.querySelector(`button[data-parametro="${t}"]`);if(e){new bootstrap.Tab(e).show()}else console.log("No se encontró el botón de tab para la subcategoría: "+t)}document.querySelectorAll("#tab-subcategorias button").forEach((t=>{t.addEventListener("click",(()=>{const o=t.getAttribute("data-parametro");e.set("categoria",o),window.history.replaceState(null,"",`?${e.toString()}`)}))}))}))},function(){var e=document.querySelector("#slider-principal");new bootstrap.Carousel(e,{interval:5e3,wrap:!0})}],t={};function o(r){var n=t[r];if(void 0!==n)return n.exports;var c=t[r]={exports:{}};return e[r](c,c.exports,o),c.exports}o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,{a:t}),t},o.d=function(e,t){for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})};var r={};!function(){"use strict";o.r(r);o(1),o(3),o(5),o(6),o(7),o(8)}()}();
+/******/ (function() { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ([
+/* 0 */,
+/* 1 */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _funciones_help_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+
+
+async function loadHead() {
+    try {
+        const response = await fetch(`${(0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_0__.getDomain)()}/parts/head.html`);
+        let data = await response.text();
+        data = data.replace(/{{domain}}/g, (0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_0__.getDomain)());
+        data = typeof pageTitle !== 'undefined' ? data.replace('{{pageTitle}}', pageTitle) : data.replace('{{pageTitle}}', '');
+        document.head.innerHTML += data;
+    } catch (error) {
+        console.error('Error loading head:', error);
+        throw error; // Propaga el error para el manejo en el flujo principal
+    }
+}
+
+async function loadComponent(url, elementId, callback) { 
+    try {
+        const response = await fetch(url);
+        let data = await response.text();
+        data = data.replace(/{{domain}}/g, (0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_0__.getDomain)());
+        document.getElementById(elementId).innerHTML += data;
+        if (callback) callback();
+    } catch (error) {
+        console.error(`Error loading component ${elementId}:`, error);
+    }
+}
+
+// Cargar contenido
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        await loadHead();
+        await Promise.all([
+            loadComponent(`${(0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_0__.getDomain)()}/parts/banner-top.html`, 'banner-top'),
+            loadComponent(`${(0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_0__.getDomain)()}/parts/nav.html`, 'navegador', _funciones_help_js__WEBPACK_IMPORTED_MODULE_0__.setActiveNavLink),
+            loadComponent(`${(0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_0__.getDomain)()}/parts/pasos-compra.html`, 'pasos-compra'),
+            loadComponent(`${(0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_0__.getDomain)()}/parts/footer.html`, 'footer')
+        ]);
+        if (document.body.classList.contains('index')){
+            // await loadComponent('./parts/slider.html', 'slider');
+        }
+    } catch (error) {
+        console.error('Error loading head or components:', error);
+    } finally {
+        setTimeout(() => {
+            document.getElementById('main').style.display = '';
+        }, 300);
+    }
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getDomain: function() { return /* binding */ getDomain; },
+/* harmony export */   orderPrice: function() { return /* binding */ orderPrice; },
+/* harmony export */   setActiveNavLink: function() { return /* binding */ setActiveNavLink; }
+/* harmony export */ });
+// Abrir tabs especificas segun el atributo de la URL
+function setActiveNavLink() {
+    const links = document.querySelectorAll('.navlista a');
+    const currentPath = window.location.pathname;
+
+    links.forEach(link => {
+        if (link.getAttribute('href') === '.' + currentPath) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Ordenar precio
+function orderPrice(items) {
+    Object.keys(items).forEach(item => {
+        items[item].sort((a, b) => {
+            const precioA = parseFloat(a.precio.replace('S/.', '').trim());
+            const precioB = parseFloat(b.precio.replace('S/.', '').trim());
+            return precioA - precioB;
+        });
+    });
+}
+
+function getDomain() {
+    return window.location.origin;
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   dataPedido: function() { return /* binding */ dataPedido; },
+/* harmony export */   fetchTemplate: function() { return /* binding */ fetchTemplate; },
+/* harmony export */   generateProductHtml: function() { return /* binding */ generateProductHtml; },
+/* harmony export */   handlePeluches: function() { return /* binding */ handlePeluches; },
+/* harmony export */   handleProducto: function() { return /* binding */ handleProducto; },
+/* harmony export */   handleProductoSeleccionado: function() { return /* binding */ handleProductoSeleccionado; },
+/* harmony export */   handleVinil: function() { return /* binding */ handleVinil; },
+/* harmony export */   hideEmptyModals: function() { return /* binding */ hideEmptyModals; },
+/* harmony export */   initializeModals: function() { return /* binding */ initializeModals; },
+/* harmony export */   whatsappUrl: function() { return /* binding */ whatsappUrl; }
+/* harmony export */ });
+/* harmony import */ var _sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+/* harmony import */ var _funciones_help_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+
+
+
+
+// Función para obtener el contenido de la plantilla
+const fetchTemplate = async () => {
+    try {
+        const response = await fetch(`${(0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_1__.getDomain)()}/parts/grilla-tabs.html`);
+        return await response.text();
+    } catch (error) {
+        console.error('Error fetching grilla-tabs.html:', error);
+        throw error;
+    }
+};
+
+// Función para inicializar modales de Bootstrap
+const initializeModals = () => {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => new bootstrap.Modal(modal));
+};
+
+
+// Enlaces para los botones de productos
+function whatsappUrl(data) {
+    let enlace = `https://api.whatsapp.com/send?phone=51940541547&text=`;
+    enlace += `Pedido de compra:`;
+    enlace += `%0A(*)Arreglo: ${data.producto.nombre} (SKU:${data.producto.sku}) - S/${data.producto.precio}`;
+    if (data.peluche.precio !== 0) {
+        enlace += `%0A(*)Peluche: ${data.peluche.nombre} (SKU:${data.peluche.sku}) - S/${data.peluche.precio}`;
+    } else {
+        enlace += `%0A(*)Peluche: No incluye peluche`;
+    }
+    if (data.vinil.precio !== 0) {
+        enlace += `%0A(*)Mensaje: "${data.vinil.mensaje}" - S/${data.vinil.precio}`;
+    } else {
+        enlace += `%0A(*)Mensaje: No incluye mensaje personalizado`;
+    }
+    enlace += `%0A(*)Precio Total: S/${data.precioTotal}`;
+    data.enlace.href = enlace;
+}
+
+// Ocultar secciones especificas vacias de modales
+function hideEmptyModals() {
+    const modalContenidos = document.querySelectorAll('.modal-contenido');
+    const modalVideos = document.querySelectorAll('.modal-video');
+    modalContenidos.forEach(modalContenido => {
+        if (modalContenido.querySelector('ul').children.length === 0) {
+            modalContenido.style.display = 'none';
+        }
+    });
+    modalVideos.forEach(modalVideo => {
+        const baseurl = window.location;
+        const videoEnlace = modalVideo.querySelector('.video-enlace').getAttribute('href');
+        if (!videoEnlace || videoEnlace === baseurl || videoEnlace === '') {
+            modalVideo.style.display = 'none';
+        }
+    });
+}
+
+// Contenido de pedido
+const dataPedido = {
+    producto: {
+        nombre: '',
+        sku: '',
+        precio: 0
+    },
+    peluche: {
+        nombre: '',
+        sku: '',
+        precio: 0
+    },
+    vinil: {
+        mensaje: '',
+        precio: 0
+    },
+    get precioTotal() {
+        return (parseFloat(this.producto.precio) + parseFloat(this.peluche.precio) + parseFloat(this.vinil.precio)).toFixed(2);
+    },
+    enlace: ''
+};
+
+// Aregra los datos a la plantilla HTML de productos
+const generateProductHtml = (template, product, categoria, index, contenidoLista) => {
+    return template
+        .replace(/{{cols}}/g, 'col-xl-4 col-lg-4 col-md-6 col-12')
+        .replace(/{{imagen}}/g, product.thumbnail)
+        .replace(/{{nombre}}/g, product.nombre)
+        .replace(/{{precio}}/g, product.precio)
+        // .replace(/{{video}}/g, product.video)
+        .replace(/{{notas}}/g, product.notas)
+        // .replace(/{{contenido}}/g, contenidoLista)
+        // .replace(/{{index}}/g, `${categoria}-${index}`)
+        .replace(/{{sku}}/g, product.sku);
+};
+
+//Funcion para manejar producto seleccionado
+const handleProducto = () => {
+    const productos = document.querySelectorAll('.producto-item');
+    productos.forEach(producto => {
+        producto.addEventListener('click', handleProductoEnlace);
+    });
+}
+
+const handleProductoEnlace = (event) => {
+    const producto = event.currentTarget;
+    const skuProducto = producto.getAttribute('data-sku');
+    const baseUrl = window.location.origin + window.location.pathname;
+    window.location.href = `${baseUrl}arreglo?sku=${skuProducto}`;
+}
+
+const handleProductoSeleccionado = (event) => {
+    const itemProducto = document.querySelector('.producto-title');
+    const precioProducto = document.querySelector('.producto-precio');
+    const digitoPrecioProducto = parseFloat(precioProducto.dataset.precio.replace('S/.', '').trim());
+
+    dataPedido.producto.nombre = itemProducto.dataset.nombre;
+    dataPedido.producto.sku = itemProducto.dataset.sku;
+    dataPedido.producto.precio = digitoPrecioProducto.toFixed(2);
+
+    dataPedido.peluche.nombre = '';
+    dataPedido.peluche.sku = '';
+    dataPedido.peluche.precio = 0;
+
+    dataPedido.vinil.mensaje = '';
+    dataPedido.vinil.precio = 0;
+
+    dataPedido.enlace = '';
+}
+
+// Función para manejar peluches
+const handlePeluches = async () => {
+    try {
+        const peluches = await (0,_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchPeluches)();
+        const enlaceWsp = document.getElementById(`producto-pedido`).querySelector('.wsp-pedido');
+        const precioProducto = document.getElementById(`precio-total`);
+        const modalPeluches = document.getElementById(`producto-peluches`);
+        const carouselPeluches = modalPeluches.querySelector('.carousel-inner');
+
+        // Agregar peluches al carrusel
+        addPeluchesToCarousel(peluches, carouselPeluches, precioProducto, enlaceWsp);
+    } catch (error) {
+        console.error('Error fetching peluches:', error);
+    }
+};
+
+// export const handlePeluches = async () => {
+//     try {
+//         const peluches = await fetchPeluches();
+//         const modals = document.querySelectorAll('.modal');
+
+//         modals.forEach(modal => {
+//             const index = modal.id.replace('productModal', '');
+//             const enlaceWsp = document.getElementById(`modal-pedido${index}`).querySelector('.wsp-pedido');
+//             const precioProducto = document.getElementById(`precio-total${index}`);
+//             const modalPeluches = document.getElementById(`modal-peluches${index}`);
+//             const carouselPeluches = modalPeluches.querySelector('.carousel-inner');
+
+//             // Agregar peluches al carrusel
+//             addPeluchesToCarousel(peluches, carouselPeluches, precioProducto, enlaceWsp, index);
+//         });
+//     } catch (error) {
+//         console.error('Error fetching peluches:', error);
+//     }
+// };
+
+// Función para agregar peluches al carrusel
+const addPeluchesToCarousel = (peluches, carouselPeluches, precioProducto, enlaceWsp) => {
+    let grupoPeluches = '';
+    peluches.forEach((peluche, i) => {
+        const active = i === 0 ? 'active' : '';
+        if (i % 2 === 0) {
+            if (i > 0) grupoPeluches += '</div>'; // Cierra el div anterior si hay uno
+            grupoPeluches += `<div class="row carousel-item ${active}">`; // Abre un nuevo grupo
+        }
+
+        grupoPeluches += `
+                    <div class="col-6 peluche" data-id="${peluche.sku}" data-precio="${peluche.precio}" data-nombre="Peluche ${peluche.nombre}" data-sku="${peluche.sku}">
+                        <img src="${peluche.imagen}" class="d-block w-100" alt="${peluche.nombre}">
+                        <div class="info-peluche">
+                            <h5 class="nombre">${peluche.nombre}</h5>
+                            <p class="precio">${peluche.precio}</p>
+                            <p class="tamanio">Medidas:<br /> ${peluche.altura}</p>
+                            <button class="select-peluche">Agregar</button>
+                        </div>
+                    </div>
+                `;
+
+        if (i === peluches.length - 1) {
+            grupoPeluches += '</div>'; // Cierra el último grupo
+        }
+    });
+    carouselPeluches.innerHTML = grupoPeluches;
+
+    // Agregar eventos a los peluches
+    addPeluchesEvents(carouselPeluches, precioProducto, enlaceWsp);
+};
+
+// Función para agregar peluches al carrusel
+// const addPeluchesToCarousel = (peluches, carouselPeluches, precioProducto, enlaceWsp, index) => {
+//     let grupoPeluches = '';
+//     peluches.forEach((peluche, i) => {
+//         const active = i === 0 ? 'active' : '';
+//         if (i % 2 === 0) {
+//             if (i > 0) grupoPeluches += '</div>'; // Cierra el div anterior si hay uno
+//             grupoPeluches += `<div class="row carousel-item ${active}">`; // Abre un nuevo grupo
+//         }
+
+//         grupoPeluches += `
+//             <div class="col-6 peluche" data-id="${peluche.sku}" data-precio="${peluche.precio}" data-nombre="Peluche ${peluche.nombre}" data-sku="${peluche.sku}">
+//                 <img src="${peluche.imagen}" class="d-block w-100" alt="${peluche.nombre}">
+//                 <div class="info-peluche">
+//                     <h5 class="nombre">${peluche.nombre}</h5>
+//                     <p class="precio">${peluche.precio}</p>
+//                     <p class="tamanio">Medidas:<br /> ${peluche.altura}</p>
+//                     <button class="select-peluche">Agregar</button>
+//                 </div>
+//             </div>
+//         `;
+
+//         if (i === peluches.length - 1) {
+//             grupoPeluches += '</div>'; // Cierra el último grupo
+//         }
+//     });
+//     carouselPeluches.innerHTML = grupoPeluches;
+
+//     // Agregar eventos a los peluches
+//     addPeluchesEvents(carouselPeluches, precioProducto, enlaceWsp, index);
+// };
+
+// Función para agregar eventos a los peluches
+const addPeluchesEvents = (carouselPeluches, precioProducto, enlaceWsp) => {
+    const itemPeluches = carouselPeluches.querySelectorAll('.peluche');
+    const filaPeluche = document.getElementById(`row-peluche`);
+    const tdNombrePeluche = filaPeluche.querySelector(`#nombre-peluche`);
+    const tdPrecioPeluche = filaPeluche.querySelector(`#precio-peluche`);
+
+    itemPeluches.forEach(peluche => {
+        peluche.addEventListener('click', () => {
+            const precioPeluche = peluche.dataset.precio;
+            const precioPelucheNumerico = parseFloat(precioPeluche.replace('S/.', '').trim());
+
+            const botonPeluche = peluche.querySelector('.select-peluche');
+
+            // Lógica para agregar o deseleccionar peluche
+            if (botonPeluche.classList.contains('active')) {
+                dataPedido.peluche.nombre = '';
+                dataPedido.peluche.sku = '';
+                dataPedido.peluche.precio = 0;
+
+                botonPeluche.classList.remove('active');
+                botonPeluche.innerText = 'Agregar';
+
+                filaPeluche.style.display = 'none';
+                tdNombrePeluche.innerText = '';
+                tdPrecioPeluche.innerText = '';
+
+            } else {
+                itemPeluches.forEach(pelucheItem => {
+                    const boton = pelucheItem.querySelector('.select-peluche');
+                    boton.classList.remove('active');
+                    boton.innerText = 'Agregar';
+                });
+
+                // Actualizar precio total
+                dataPedido.peluche.nombre = peluche.dataset.nombre;
+                dataPedido.peluche.sku = peluche.dataset.sku;
+                dataPedido.peluche.precio = precioPelucheNumerico.toFixed(2);
+
+                botonPeluche.classList.add('active');
+                botonPeluche.innerText = 'Agregado';
+
+                // Actualizar tabla
+                filaPeluche.style.display = 'table-row';
+                tdNombrePeluche.innerText = `Peluche: ${peluche.dataset.nombre} (SKU: ${peluche.dataset.sku})`;
+                tdPrecioPeluche.innerText = `S/.${precioPelucheNumerico.toFixed(2)}`;
+            }
+
+            precioProducto.innerText = `S/.${dataPedido.precioTotal}`;
+            dataPedido.enlace = enlaceWsp;
+
+            whatsappUrl(dataPedido);
+        });
+    });
+};
+
+// Función para agregar eventos a los peluches
+// const addPeluchesEvents = (carouselPeluches, precioProducto, enlaceWsp, index) => {
+//     const itemPeluches = carouselPeluches.querySelectorAll('.peluche');
+//     const filaPeluche = document.getElementById(`row-peluche${index}`);
+//     const tdNombrePeluche = filaPeluche.querySelector(`#nombre-peluche${index}`);
+//     const tdPrecioPeluche = filaPeluche.querySelector(`#precio-peluche${index}`);
+
+//     itemPeluches.forEach(peluche => {
+//         peluche.addEventListener('click', () => {
+//             const precioPeluche = peluche.dataset.precio;
+//             const precioPelucheNumerico = parseFloat(precioPeluche.replace('S/.', '').trim());
+
+//             const botonPeluche = peluche.querySelector('.select-peluche');
+
+//             // Lógica para agregar o deseleccionar peluche
+//             if (botonPeluche.classList.contains('active')) {
+//                 dataPedido.peluche.nombre = '';
+//                 dataPedido.peluche.sku = '';
+//                 dataPedido.peluche.precio = 0;
+
+//                 botonPeluche.classList.remove('active');
+//                 botonPeluche.innerText = 'Agregar';
+
+//                 filaPeluche.style.display = 'none';
+//                 tdNombrePeluche.innerText = '';
+//                 tdPrecioPeluche.innerText = '';
+
+//             } else {
+//                 itemPeluches.forEach(pelucheItem => {
+//                     const boton = pelucheItem.querySelector('.select-peluche');
+//                     boton.classList.remove('active');
+//                     boton.innerText = 'Agregar';
+//                 });
+
+//                 // Actualizar precio total
+//                 dataPedido.peluche.nombre = peluche.dataset.nombre;
+//                 dataPedido.peluche.sku = peluche.dataset.sku;
+//                 dataPedido.peluche.precio = precioPelucheNumerico.toFixed(2);
+
+//                 botonPeluche.classList.add('active');
+//                 botonPeluche.innerText = 'Agregado';
+
+//                 // Actualizar tabla
+//                 filaPeluche.style.display = 'table-row';
+//                 tdNombrePeluche.innerText = `Peluche: ${peluche.dataset.nombre} (SKU: ${peluche.dataset.sku})`;
+//                 tdPrecioPeluche.innerText = `S/.${precioPelucheNumerico.toFixed(2)}`;
+//             }
+
+//             precioProducto.innerText = `S/.${dataPedido.precioTotal}`;
+//             dataPedido.enlace = enlaceWsp;
+
+//             whatsappUrl(dataPedido);
+//         });
+//     });
+// };
+
+// Función para manejar vinil
+const handleVinil = () => {
+
+    const modalVinil = document.getElementById(`producto-vinil`);
+    const checkVinil = modalVinil.querySelector(`#checkvinil`);
+    const boxTextVinil = modalVinil.querySelector(`.textvinil`);
+    const inputVinil = boxTextVinil.querySelector(`#textvinil`);
+
+    const precioProducto = document.getElementById(`precio-total`);
+    const enlaceWsp = document.getElementById(`producto-pedido`).querySelector('.wsp-pedido');
+
+    const filaVinil = document.getElementById(`row-vinil`);
+    const tdNombreVinil = filaVinil.querySelector(`#nombre-vinil`);
+    const tdPrecioVinil = filaVinil.querySelector(`#precio-vinil`);
+
+    boxTextVinil.style.display = 'none';
+
+    checkVinil.addEventListener('change', () => {
+        boxTextVinil.style.display = checkVinil.checked ? 'block' : 'none';
+        if (!checkVinil.checked) {
+            inputVinil.value = '';
+            dataPedido.vinil.mensaje = '';
+            dataPedido.vinil.precio = 0;
+
+            filaVinil.style.display = 'none';
+            tdNombreVinil.innerText = '';
+            tdPrecioVinil.innerText = '';
+        }
+        precioProducto.innerText = `S/.${dataPedido.precioTotal}`;
+        dataPedido.enlace = enlaceWsp;
+        whatsappUrl(dataPedido);
+    });
+
+    inputVinil.addEventListener('input', () => {
+        if (inputVinil.value.length > 50) {
+            inputVinil.value = inputVinil.value.slice(0, 50);
+        }
+
+        if (inputVinil.value == '') {
+            dataPedido.vinil.mensaje = '';
+            dataPedido.vinil.precio = 0;
+
+            filaVinil.style.display = 'none';
+            tdNombreVinil.innerText = '';
+            tdPrecioVinil.innerText = '';
+
+        } else {
+            dataPedido.vinil.mensaje = inputVinil.value;
+            dataPedido.vinil.precio = parseFloat(6).toFixed(2);
+
+            filaVinil.style.display = 'table-row';
+            tdNombreVinil.innerText = `Mensaje: "${inputVinil.value}"`;
+            tdPrecioVinil.innerText = `S/.${parseFloat(6).toFixed(2)}`;
+        }
+
+        precioProducto.innerText = `S/.${dataPedido.precioTotal}`;
+        dataPedido.enlace = enlaceWsp;
+        whatsappUrl(dataPedido);
+    });
+};
+
+// export const handleVinil = () => {
+//     const modals = document.querySelectorAll('.modal');
+
+//     modals.forEach(modal => {
+//         const index = modal.id.replace('productModal', '');
+//         const modalVinil = document.getElementById(`moda-vinil${index}`);
+//         const checkVinil = modalVinil.querySelector(`#checkvinil${index}`);
+//         const boxTextVinil = modalVinil.querySelector(`.textvinil`);
+//         const inputVinil = boxTextVinil.querySelector(`#textvinil${index}`);
+
+//         const precioProducto = document.getElementById(`precio-total${index}`);
+//         const enlaceWsp = document.getElementById(`modal-pedido${index}`).querySelector('.wsp-pedido');
+
+//         const filaVinil = document.getElementById(`row-vinil${index}`);
+//         const tdNombreVinil = filaVinil.querySelector(`#nombre-vinil${index}`);
+//         const tdPrecioVinil = filaVinil.querySelector(`#precio-vinil${index}`);
+
+//         boxTextVinil.style.display = 'none';
+
+//         checkVinil.addEventListener('change', () => {
+//             boxTextVinil.style.display = checkVinil.checked ? 'block' : 'none';
+//             if (!checkVinil.checked) {
+//                 inputVinil.value = '';
+//                 dataPedido.vinil.mensaje = '';
+//                 dataPedido.vinil.precio = 0;
+
+//                 filaVinil.style.display = 'none';
+//                 tdNombreVinil.innerText = '';
+//                 tdPrecioVinil.innerText = '';
+//             }
+//             precioProducto.innerText = `S/.${dataPedido.precioTotal}`;
+//             dataPedido.enlace = enlaceWsp;
+//             whatsappUrl(dataPedido);
+//         });
+
+//         inputVinil.addEventListener('input', () => {
+//             if (inputVinil.value.length > 50) {
+//                 inputVinil.value = inputVinil.value.slice(0, 50);
+//             }
+
+//             if (inputVinil.value == '') {
+//                 dataPedido.vinil.mensaje = '';
+//                 dataPedido.vinil.precio = 0;
+
+//                 filaVinil.style.display = 'none';
+//                 tdNombreVinil.innerText = '';
+//                 tdPrecioVinil.innerText = '';
+
+//             } else {
+//                 dataPedido.vinil.mensaje = inputVinil.value;
+//                 dataPedido.vinil.precio = parseFloat(6).toFixed(2);
+
+//                 filaVinil.style.display = 'table-row';
+//                 tdNombreVinil.innerText = `Mensaje: "${inputVinil.value}"`;
+//                 tdPrecioVinil.innerText = `S/.${parseFloat(6).toFixed(2)}`;
+//             }
+
+//             precioProducto.innerText = `S/.${dataPedido.precioTotal}`;
+//             dataPedido.enlace = enlaceWsp;
+//             whatsappUrl(dataPedido);
+//         });
+//     });
+// };
+
+
+/***/ }),
+/* 4 */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   fetchArreglos: function() { return /* binding */ fetchArreglos; },
+/* harmony export */   fetchFlores: function() { return /* binding */ fetchFlores; },
+/* harmony export */   fetchGigantes: function() { return /* binding */ fetchGigantes; },
+/* harmony export */   fetchHelios: function() { return /* binding */ fetchHelios; },
+/* harmony export */   fetchPeluches: function() { return /* binding */ fetchPeluches; }
+/* harmony export */ });
+// Función genérica para obtener datos de Google Sheets
+async function fetchSheetData(sheetName, range) {
+    const API_KEY = 'AIzaSyB0wl-sQaS72bOzVKBbsdgPKMK9_IYlUWA';
+    const SPREADSHEET_ID = '1UeRsfG_I1Ai27zZuWNzL4CYHdP9gzCd49Sz1IkNBtmE';
+
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${sheetName}!${range}?key=${API_KEY}`);
+    const data = await response.json();
+    return data.values.slice(1); // Ignoramos la primera fila de títulos
+}
+
+// Función para procesar las URLs de imágenes
+function procesarImagenUrl(imagenUrl, tamanio) {
+    if (imagenUrl.includes('drive.google.com/file/d/')) {
+        const fileId = imagenUrl.match(/\/d\/(.*?)\//)[1];
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w${tamanio}`;
+    }
+    return imagenUrl;
+}
+
+// Función para remover tildes y otros diacríticos
+function normalizarTexto(texto) {
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+// Función para transformar los datos de productos
+function transformarProducto(row) {
+    return {
+        id: row[0],
+        thumbnail: row[1] ? procesarImagenUrl(row[1], 300) : null,
+        imagen: row[1] ? procesarImagenUrl(row[1], 1000) : null,
+        nombre: row[2],
+        precio: row[3],
+        notas: row[4],
+        descripcion: row[5],
+        contenido: row[6] ? row[6].split('; ') : [],
+        subcategorias: row[7] ? row[7].split('; ') : [],
+        sku: row[8] ? normalizarTexto(row[8]) : null,
+        destacado: row[9].toLowerCase() === 'true' ? true : false,
+        visible: row[10].toLowerCase() === 'true' ? true : false,
+
+    };
+}
+
+// Función para transformar los datos de peluches
+function transformarPeluche(row) {
+    return {
+        id: row[0],
+        imagen: procesarImagenUrl(row[1]),
+        precio: row[2],
+        nombre: row[3],
+        altura: row[4],
+        sku: row[5]
+    };
+}
+
+// Fetch de productos
+// export async function fetchProducts() {
+//     const data = await fetchSheetData('Productos', 'A:K');
+//     const products = data.map(transformarProducto).filter(product => product.id);
+//     return products;
+// }
+
+// Fetch de arreglos
+async function fetchArreglos() {
+    const data = await fetchSheetData('Arreglos', 'A:K');
+    const products = data.map(transformarProducto).filter(product => product.id);
+    return products;
+}
+
+// Fetch de arreglos gigantes
+async function fetchGigantes() {
+    const data = await fetchSheetData('Gigantes', 'A:K');
+    const products = data.map(transformarProducto).filter(product => product.id);
+    return products;
+}
+
+// Fetch de arreglos helios
+async function fetchHelios() {
+    const data = await fetchSheetData('Helios', 'A:K');
+    const products = data.map(transformarProducto).filter(product => product.id);
+    return products;
+}
+
+// Fetch de arreglos flores
+async function fetchFlores() {
+    const data = await fetchSheetData('Flores', 'A:K');
+    const products = data.map(transformarProducto).filter(product => product.id);
+    return products;
+}
+
+
+// Fetch de peluches
+async function fetchPeluches() {
+    const data = await fetchSheetData('Peluches', 'A:F');
+    const peluches = data.map(transformarPeluche).filter(peluche => peluche.id);
+    return peluches;
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+/* harmony import */ var _loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var _funciones_help_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mostrador = document.getElementById('mostrador');
+    if (!mostrador) return;
+
+    const categorias = {
+        globos: [],
+        gigantes: [],
+        flores: [],
+        helio: []
+    };
+
+    // Función para procesar los productos
+    const processProducts = async (template) => {
+        try {
+            const data = await (0,_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchProducts)();
+            data.forEach(product => {
+                if (product.destacado) {
+                    categorias[product.categoria].push(product);
+                }
+            });
+
+            // Ordenar y limitar productos por categoría
+            (0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_2__.orderPrice)(categorias);
+            Object.keys(categorias).forEach(categoria => {
+                categorias[categoria] = categorias[categoria].slice(0, 4);
+            });
+
+            // Agregar productos al DOM
+            addProductsToDOM(categorias, template);
+            (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.initializeModals)();
+            return categorias;
+        } catch (error) {
+            console.error('Error processing products:', error);
+            throw error;
+        }
+    };
+
+    // Función para agregar productos al DOM
+    const addProductsToDOM = (categorias, template) => {
+        Object.keys(categorias).forEach(categoria => {
+            const contenedorCategoria = document.querySelector(`#${categoria} .productos`);
+
+            categorias[categoria].forEach((product, index) => {
+                if (!product.id) return;
+
+                const contenidoLista = product.contenido.length > 0
+                    ? product.contenido.map(item => `<li>${item}</li>`).join('')
+                    : '';
+
+                const itemHtml = template
+                    .replace(/{{cols}}/g, 'col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-12')
+                    .replace(/{{imagen}}/g, product.imagen)
+                    .replace(/{{nombre}}/g, product.nombre)
+                    .replace(/{{precio}}/g, product.precio)
+                    .replace(/{{video}}/g, product.video)
+                    .replace(/{{descripcion}}/g, product.descripcion)
+                    .replace(/{{contenido}}/g, contenidoLista)
+                    .replace(/{{index}}/g, product.categoria + index)
+                    .replace(/{{sku}}/g, product.sku);
+
+                contenedorCategoria.innerHTML += (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.generateProductHtml)(template, product, categoria, index, contenidoLista);
+                //contenedorCategoria.innerHTML += itemHtml;
+            });
+        });
+    };
+
+    // Función para inicializar el mostrador
+    const initializeMostrador = async () => {
+        try {
+            const template = await (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.fetchTemplate)();
+            await processProducts(template);
+            (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.hideEmptyModals)();
+            (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.handleProducto)();
+            (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.handleVinil)();
+            await (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.handlePeluches)();
+        } catch (error) {
+            console.error('Error initializing mostrador:', error);
+        }
+    }
+
+    if (document.body.id === 'index') {
+        initializeMostrador();
+    }
+});
+
+/***/ }),
+/* 6 */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+/* harmony import */ var _loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var _funciones_help_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const catalogo = document.getElementById('catalogo');
+    if (!catalogo) return;
+
+    const categoriaPrincipal = catalogo.dataset.categoria;
+
+    const normalizeSubcategoria = (subcategoria) => {
+        return subcategoria
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9\-]/g, '');
+    };
+
+    const processProducts = async (template, fetchCategory) => {
+        try {
+            const data = await fetchCategory();
+            const subcategorias = categorizeProducts(data);
+            (0,_funciones_help_js__WEBPACK_IMPORTED_MODULE_2__.orderPrice)(subcategorias);
+
+            const tabSubcategorias = document.getElementById('tab-subcategorias');
+            const contentSubcategorias = document.getElementById('content-subcategorias');
+            createTabs(subcategorias, tabSubcategorias, contentSubcategorias, template);
+
+            return subcategorias;
+        } catch (error) {
+            console.error('Error processing products:', error);
+            throw error;
+        }
+    };
+
+    // Organizar productos por categoria
+    const categorizeProducts = (data) => {
+        const subcategorias = {};
+
+        data.forEach(product => {
+            if (product.visible === true && product.id) {
+                product.subcategorias.forEach(subcategoria => {
+                    if (!subcategorias[subcategoria]) {
+                        subcategorias[subcategoria] = [];
+                    }
+                    subcategorias[subcategoria].push(product);
+                });
+            }
+        });
+
+        return subcategorias;
+    };
+
+    // Creando tabs para categorias
+    const createTabs = (subcategorias, tabSubcategorias, contentSubcategorias, template) => {
+        Object.keys(subcategorias).sort().forEach((subcategoria, index) => {
+            const normalizeSubcat = normalizeSubcategoria(subcategoria);
+            const tabId = `subcategoria-${normalizeSubcat}`;
+            const isFirstTab = index === 0;
+            const activeClass = isFirstTab ? 'active' : '';
+
+            tabSubcategorias.appendChild(createTabElement(subcategoria, tabId, activeClass, isFirstTab));
+            contentSubcategorias.appendChild(createContentPane(subcategorias[subcategoria], subcategoria, tabId, isFirstTab, template));
+        });
+    };
+
+    const createTabElement = (subcategoria, tabId, activeClass, isFirstTab) => {
+        const li = document.createElement('li');
+        li.classList.add('nav-item');
+        li.innerHTML = `
+            <button class="nav-link ${activeClass}" id="${tabId}-tab" data-bs-toggle="pill"
+                data-bs-target="#${tabId}" data-parametro="${normalizeSubcategoria(subcategoria)}" type="button" role="tab" aria-controls="${tabId}"
+                aria-selected="${isFirstTab}"><i class="bi bi-arrow-right-short"></i> ${subcategoria}</button>
+        `;
+        return li;
+    };
+
+    const createContentPane = (productos, subcategoria, tabId, isFirstTab, template) => {
+        const div = document.createElement('div');
+        div.classList.add('tab-pane', 'fade');
+        if (isFirstTab) {
+            div.classList.add('show', 'active');
+        }
+        div.id = tabId;
+        div.setAttribute('role', 'tabpanel');
+        div.setAttribute('aria-labelledby', `${tabId}-tab`);
+        div.setAttribute('tabindex', '0');
+
+        const productosDiv = document.createElement('div');
+        productosDiv.classList.add('row', 'productos');
+        div.appendChild(productosDiv);
+
+        productos.forEach((product, index) => {
+            if (!product.id) return;
+            const contenidoLista = product.contenido.length > 0
+                ? product.contenido.map(item => `<li>${item}</li>`).join('')
+                : '';
+
+            productosDiv.innerHTML += (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.generateProductHtml)(template, product, normalizeSubcategoria(subcategoria), index, contenidoLista);
+        });
+
+        return div;
+    };
+
+    const urls = () => {
+        const event = new Event('subcategorias-loaded');
+        document.dispatchEvent(event);
+    };
+
+    // Función para inicializar el mostrador
+    const initializeMostradorCategory = async (fetchCategory) => {
+        try {
+            const template = await (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.fetchTemplate)();
+            await processProducts(template, fetchCategory);
+            urls();
+            (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.handleProducto)();
+        } catch (error) {
+            console.error('Error initializing mostrador:', error);
+        }
+    }
+
+    if (document.body.id === 'category-page') {
+        if (categoriaPrincipal === 'globos') {
+            initializeMostradorCategory(_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchArreglos);
+        } else if (categoriaPrincipal === 'gigantes') {
+            initializeMostradorCategory(_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchGigantes);
+        } else if (categoriaPrincipal === 'helio') {
+            initializeMostradorCategory(_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchHelios);
+        } else if (categoriaPrincipal === 'flores') {
+            initializeMostradorCategory(_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchFlores);
+        } else {
+            initializeMostradorCategory();
+        }
+    }
+});
+
+/***/ }),
+/* 7 */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+/* harmony import */ var _loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const informacion = document.getElementById('informacion-producto');
+    if (!informacion) return;
+
+    const categoriaPrincipal = informacion.dataset.categoria;
+
+    const normalizeSubcategoria = (subcategoria) => {
+        return subcategoria
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9\-]/g, '');
+    };
+
+    const getSKUFromURL = () => {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('sku');
+    };
+
+
+    const processProduct = async (fetchCategory) => {
+        try {
+            const data = await fetchCategory();
+            const sku = getSKUFromURL();
+            const product = data.find(item => item.sku === sku);
+
+            if (product && product.visible === true) {
+                const contentImage = document.getElementById('imagen-principal');
+                replaceTemplate(informacion, product);
+                contenidoLista();
+                breadcrumbs(product);
+            } else {
+                console.error('Producto no encontrado para el SKU:', sku);
+                window.location = window.location.origin + "/404";
+            }
+        } catch (error) {
+            console.error('Error processing products:', error);
+            throw error;
+        } finally {
+            setTimeout(() => {
+                document.getElementById('informacion-producto').style.display = '';
+            }, 300);
+        }
+    };
+
+    const replaceTemplate = (templateElement, product) => {
+        const keys = Object.keys(product);
+        keys.forEach(key => {
+            Array.from(templateElement.attributes).forEach(attr => {
+                if (attr.value.includes(`{{${key}}}`)) {
+                    attr.value = attr.value.replace(`{{${key}}}`, product[key]);
+                }
+            });
+            templateElement.innerHTML = templateElement.innerHTML.replace(
+                new RegExp(`{{${key}}}`, 'g'),
+                product[key]
+            );
+        });
+    };
+
+    const contenidoLista = () => {
+        const productoContenido = document.getElementById("producto-contenido");
+        const ulElement = productoContenido.querySelector("ul");
+        const contenidoTexto = productoContenido.getAttribute("data-contenido");
+        const contenidoArray = contenidoTexto.split(',').map(item => item.trim());
+
+        contenidoArray.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            ulElement.appendChild(li);
+        });
+    }
+
+    const breadcrumbs = (product) => {
+        // console.log(product);
+        const breads = document.getElementById('breadcrumbs');
+        const pathArray = window.location.pathname.split('/');
+
+        const homeUrl = window.location.origin;
+        const tipoUrl = homeUrl + '/' + pathArray[1];
+
+        const subcategoriasLinks = product.subcategorias.map(subcategoria =>
+            `<a href="${tipoUrl}/?categoria=${normalizeSubcategoria(subcategoria)}">${subcategoria}</a>`
+        ).join(', ');
+
+        const div = document.createElement('DIV');
+        div.classList.add('col-12');
+        div.innerHTML = `<p>
+            <a href="${homeUrl}"><i class="bi bi-house-fill"></i> Inicio</a> <i class="bi bi-caret-right-fill"></i> 
+            <a href="${tipoUrl}">${pageTitle}</a> <i class="bi bi-caret-right-fill"></i> 
+            ${subcategoriasLinks} <i class="bi bi-caret-right-fill"></i> 
+            ${product.nombre}
+        </p>`;
+        breads.appendChild(div);
+    };
+
+    // Función para inicializar el template
+    const initializeSingle = async (fetchCategory) => {
+        try {
+            await processProduct(fetchCategory);
+            (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.handleProductoSeleccionado)();
+            // urls();
+            // hideEmptyModals();
+            // handleProducto();
+            (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.handleVinil)();
+            await (0,_loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__.handlePeluches)();
+        } catch (error) {
+            console.error('Error initializing mostrador:', error);
+        }
+    }
+
+    if (document.body.id === 'single-page') {
+        if (categoriaPrincipal === 'globos') {
+            initializeSingle(_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchArreglos);
+        } else if (categoriaPrincipal === 'gigantes') {
+            initializeSingle(_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchGigantes);
+        } else if (categoriaPrincipal === 'helio') {
+            initializeSingle(_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchHelios);
+        } else if (categoriaPrincipal === 'flores') {
+            initializeSingle(_sheetsdb_js__WEBPACK_IMPORTED_MODULE_0__.fetchFlores);
+        } else {
+            initializeSingle();
+        }
+    }
+});
+
+
+/***/ }),
+/* 8 */
+/***/ (function() {
+
+document.addEventListener('subcategorias-loaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const subcategoria = urlParams.get('categoria');
+
+    if (subcategoria) {
+        const tabButton = document.querySelector(`button[data-parametro="${subcategoria}"]`);
+        if (tabButton) {
+            const tabInstance = new bootstrap.Tab(tabButton);
+            tabInstance.show();
+        } else {
+            console.log('No se encontró el botón de tab para la subcategoría: ' + subcategoria);
+        }
+    }
+
+    // Agregar event listener a cada botón de subcategoría para actualizar la URL
+    const tabButtons = document.querySelectorAll('#tab-subcategorias button');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const target = button.getAttribute('data-parametro');
+            urlParams.set('categoria', target);
+            window.history.replaceState(null, '', `?${urlParams.toString()}`);
+        });
+    });
+});
+
+/***/ }),
+/* 9 */
+/***/ (function() {
+
+var myCarousel = document.querySelector('#slider-principal');
+var carousel = new bootstrap.Carousel(myCarousel, {
+  interval: 5000,
+  wrap: true
+});
+
+/***/ })
+/******/ 	]);
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+!function() {
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _loadparts_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _loadgrillas_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var _grilla_tabs_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
+/* harmony import */ var _grilla_category_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6);
+/* harmony import */ var _single_product_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
+/* harmony import */ var _urls_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8);
+/* harmony import */ var _urls_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_urls_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _slider_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9);
+/* harmony import */ var _slider_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_slider_js__WEBPACK_IMPORTED_MODULE_6__);
+// import './funciones_help.js';
+// import './sheetsdb.js';
+
+
+
+ 
+
+
+
+}();
+/******/ })()
+;

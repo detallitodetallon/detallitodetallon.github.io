@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <script>
+        const pageTitle = "Arreglos de flores"; 
+    </script>
+    <script src="./../js/main.js" defer></script>
+</head>
+
+<body id="single-page">
+    <main id="main" style="display: none;">
+        <nav id="navegador"></nav>
+        <div class="" id="banner-top"></div>
+
+        <section class="container" id="informacion-producto" data-categoria="flores" style="display: none;">
+            <div class="row" id="breadcrumbs"></div>
+            <div class="row">
+                <div class="col-lg-6 col-12 col-img" id="imagen-principal">
+                    <img src="{{imagen}}" class="img-fluid mb-3" alt="{{nombre}}">
+                </div>
+
+                <div class="col-lg-6 col-12 col-txt">
+                    <div class="producto-title" id="productModalLabel" data-sku="{{sku}}" data-nombre="{{nombre}}">
+                        <h5>{{nombre}}</h5>
+                        <span class="sku">SKU: {{sku}}</span>
+                    </div>
+
+                    <div class="producto-precio" id="producto-precio" data-precio="{{precio}}">
+                        <p>{{precio}}</p>
+                    </div>
+
+                    <div class="producto-descripcion" id="producto-descripcion">
+                        <p class="producto-subtitle">Descripción:</p>
+                        <p>{{descripcion}}</p>
+                    </div>
+
+                    <div class="producto-contenido" id="producto-contenido" data-contenido="{{contenido}}">
+                        <p class="producto-subtitle">Contenido:</p>
+                        <ul></ul>
+                    </div>
+
+                    <div class="producto-peluches" id="producto-peluches">
+                        <p class="producto-subtitle">Incluir peluche:</p>
+                        <div id="carouselPeluches" class="carousel slide" data-bs-ride="false">
+                            <div class="carousel-inner"></div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselPeluches"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselPeluches"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="producto-vinil" id="producto-vinil">
+                        <p class="producto-subtitle">Incluir mensaje personalizado:</p>
+                        <div class="mensaje" id="mensaje">
+                            <label class="checkvinil" for="checkvinil">
+                                <input type="checkbox" name="checkvinil" id="checkvinil">
+                                <span>Agregar mensaje personalizado para globo - S/.6.00</span>
+                            </label>
+                            <br />
+                            <label class="textvinil" for="textvinil">
+                                <input type="text" name="textvinil" id="textvinil" placeholder="Mensaje">
+                                <br><span>El mensaje personalizado debe tener un máximo de 50 caracteres</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="producto-total" id="producto-total">
+                        <p class="producto-subtitle">Resumen del pedido:</p>
+                        <div class="pedido">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="row-arreglo">
+                                        <td id="nombre-arreglo">Arreglo: {{nombre}} (SKU: {{sku}})</td>
+                                        <td id="precio-arreglo">{{precio}}</td>
+                                    </tr>
+                                    <tr id="row-peluche">
+                                        <td id="nombre-peluche"></td>
+                                        <td id="precio-peluche"></td>
+                                    </tr>
+                                    <tr id="row-vinil">
+                                        <td id="nombre-vinil"></td>
+                                        <td id="precio-vinil"></td>
+                                    </tr>
+                                    <tr class="total">
+                                        <td>Total:</td>
+                                        <td id="precio-total">{{precio}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="producto-pedido" id="producto-pedido">
+                        <a href="https://api.whatsapp.com/send?phone=51940541547&text=Pedido de compra:%0A(*)Arreglo: {{nombre}} (SKU:{{sku}}) - {{precio}}%0A(*)Peluche: No incluye peluche%0A(*)Mensaje: No incluye mensaje personalizado%0A(*)Precio Total: {{precio}}"
+                            target="blank_" class="wsp-pedido"><i class="bi bi-whatsapp"></i>Comprar pedido
+                            *</a>
+                        <span class="note">(*)Serás redirigido a WhatsApp para continuar con la compra. No
+                            modifiques, ni elimines el mensaje de whatsapp</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="pasos-compra"></section>
+        <footer id="footer"></footer>
+    </main>
+
+    <script src="./../libs/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
