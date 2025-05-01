@@ -1010,10 +1010,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const contenidoLista = () => {
         const productoContenido = document.getElementById("producto-contenido");
-        const ulElement = productoContenido.querySelector("ul");
         const contenidoTexto = productoContenido.getAttribute("data-contenido");
-        const contenidoArray = contenidoTexto.split(',').map(item => item.trim());
 
+        if (!contenidoTexto || contenidoTexto.trim() === "") {
+            productoContenido.style.display = "none";
+            return; 
+        }
+
+        const contenidoArray = contenidoTexto.split(',').map(item => item.trim());
+        const ulElement = productoContenido.querySelector("ul");
+        
         contenidoArray.forEach(item => {
             const li = document.createElement("li");
             li.textContent = item;
