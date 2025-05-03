@@ -282,7 +282,9 @@ const handlePeluches = async () => {
 // Función para agregar peluches al carrusel
 const addPeluchesToCarousel = (peluches, carouselPeluches, precioProducto, enlaceWsp) => {
     let grupoPeluches = '';
-    peluches.forEach((peluche, i) => {
+    const peluchesDisponibles = peluches.filter(peluche => peluche.unidades > 0); // Filtrar antes de iterar
+
+    peluchesDisponibles.forEach((peluche, i) => {
         const active = i === 0 ? 'active' : '';
         if (i % 2 === 0) {
             if (i > 0) grupoPeluches += '</div>'; // Cierra el div anterior si hay uno
@@ -290,25 +292,26 @@ const addPeluchesToCarousel = (peluches, carouselPeluches, precioProducto, enlac
         }
 
         grupoPeluches += `
-                    <div class="col-6 peluche" data-id="${peluche.sku}" data-precio="${peluche.precio}" data-nombre="Peluche ${peluche.nombre}" data-sku="${peluche.sku}">
-                        <img src="${peluche.imagen}" class="d-block w-100" alt="${peluche.nombre}">
-                        <div class="info-peluche">
-                            <h5 class="nombre">${peluche.nombre}</h5>
-                            <p class="precio">${peluche.precio}</p>
-                            <p class="tamanio">Medidas:<br /> ${peluche.altura}</p>
-                            <button class="select-peluche">Agregar</button>
-                        </div>
-                    </div>
-                `;
+            <div class="col-6 peluche" data-id="${peluche.sku}" data-precio="${peluche.precio}" data-nombre="Peluche ${peluche.nombre}" data-sku="${peluche.sku}">
+                <img src="${peluche.imagen}" class="d-block w-100" alt="${peluche.nombre}">
+                <div class="info-peluche">
+                    <h5 class="nombre">${peluche.nombre}</h5>
+                    <p class="precio">${peluche.precio}</p>
+                    <p class="tamanio">Medidas:<br /> ${peluche.altura}</p>
+                    <button class="select-peluche">Agregar</button>
+                </div>
+            </div>
+        `;
 
-        if (i === peluches.length - 1) {
+        if (i === peluchesDisponibles.length - 1) {
             grupoPeluches += '</div>'; // Cierra el último grupo
         }
     });
+
     carouselPeluches.innerHTML = grupoPeluches;
 
     // Agregar eventos a los peluches
-    addPeluchesEvents(carouselPeluches, precioProducto, enlaceWsp);
+    addPeluchesEvents(carouselPeluches, precioProducto, enlaceWsp); 
 };
 
 // Función para agregar peluches al carrusel
@@ -645,7 +648,8 @@ function transformarPeluche(row) {
         precio: row[2],
         nombre: row[3],
         altura: row[4],
-        sku: row[5]
+        sku: row[5],
+        unidades: row[6]
     };
 }
 
@@ -687,7 +691,7 @@ async function fetchFlores() {
 
 // Fetch de peluches
 async function fetchPeluches() {
-    const data = await fetchSheetData('Peluches', 'A:F');
+    const data = await fetchSheetData('Peluches', 'A:G');
     const peluches = data.map(transformarPeluche).filter(peluche => peluche.id);
     return peluches;
 }
