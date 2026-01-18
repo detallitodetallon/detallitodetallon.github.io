@@ -17,16 +17,16 @@
             <div class="row" id="breadcrumbs"></div>
             <div class="row">
                 <div class="col-lg-6 col-12 col-img" id="imagen-principal">
-                    <img src="{{imagen}}" class="img-fluid mb-3" alt="{{nombre}}">
+                    <img src="{{imagen}}" class="img-fluid mb-3" alt="{{sku}}">
                 </div>
 
                 <div class="col-lg-6 col-12 col-txt">
-                    <div class="producto-title" id="productModalLabel" data-sku="{{sku}}" data-nombre="{{nombre}}">
-                        <h5>{{nombre}}</h5>
-                        <span class="sku">SKU: {{sku}}</span>
+                    <div class="producto-title" id="productModalLabel" data-sku="{{sku}}">
+                        <h5>SKU: {{sku}}</h5>
+                        <!-- <span class="sku">SKU: {{sku}}</span> -->
                     </div>
 
-                    <div class="producto-precio" id="producto-precio" data-precio="{{precio}}" data-precio-peluche="">
+                    <div class="producto-precio" id="producto-precio" data-precio="{{precio}}">
                         <p></p>
                     </div>
 
@@ -35,12 +35,12 @@
                         <p>{{descripcion}}</p>
                     </div>
 
-                    <div class="producto-contenido" id="producto-contenido" data-contenido='{{contenido}}'>
+                    <div class="producto-contenido" id="producto-contenido" data-contenido="{{contenido}}">
                         <p class="producto-subtitle">Contenido:</p>
                         <ul></ul>
                     </div>
 
-                    <div class="producto-peluches" id="producto-peluches" data-peluche-sku="{{pelucheSku}}" >
+                    <!-- <div class="producto-peluches" id="producto-peluches" data-peluche-sku="{{pelucheSku}}" >
                         <p class="producto-subtitle">Peluches disponibles:</p>
                         <div id="carouselPeluches" class="carousel slide" data-bs-ride="false">
                             <div class="carousel-inner"></div>
@@ -55,9 +55,9 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="producto-vinil" id="producto-vinil">
+                    <!-- <div class="producto-vinil" id="producto-vinil">
                         <p class="producto-subtitle">Incluir mensaje personalizado:</p>
                         <div class="mensaje" id="mensaje">
                             <label class="checkvinil" for="checkvinil">
@@ -70,7 +70,7 @@
                                 <br><span>El mensaje personalizado debe tener un máximo de 50 caracteres</span>
                             </label>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="producto-total" id="producto-total">
                         <p class="producto-subtitle">Resumen del pedido:</p>
@@ -84,7 +84,7 @@
                                 </thead>
                                 <tbody>
                                     <tr id="row-arreglo">
-                                        <td id="nombre-arreglo">Arreglo: {{nombre}} (SKU: {{sku}})</td>
+                                        <td id="nombre-arreglo">Arreglo: {{sku}}</td>
                                         <td id="precio-arreglo">{{precio}}</td>
                                     </tr>
                                     <tr id="row-peluche">
